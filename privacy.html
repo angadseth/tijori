@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Tijori privacy</title>
+<link rel="icon" type="image/png" href="./icon-192.png" />
+<style>
+  :root { --bg: #f6f1e9; --panel: #fbf8f3; --text: #2a2420; --muted: #6e6457; --line: #e6ddcf; --brass: #9c7a4a; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #1b1815; --panel: #221e1a; --text: #efe8de; --muted: #b5aa9b; --line: #352e27; --brass: #c9a46a; } }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.6 "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 680px; margin: 0 auto; padding: 40px 16px 60px; }
+  header { display: flex; align-items: center; gap: 14px; margin-bottom: 28px; }
+  header img { width: 52px; height: 52px; }
+  h1 { font: 600 30px/1.1 Georgia, serif; margin: 0; }
+  h2 { font: 600 19px Georgia, serif; margin: 28px 0 6px; }
+  p, li { color: var(--muted); }
+  b { color: var(--text); }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 18px 20px; }
+  a { color: var(--brass); }
+  footer { margin-top: 40px; font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 14px; }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="./icon-192.png" alt="" /><div><h1>Tijori privacy</h1><p style="margin:2px 0 0">Your documents and passwords, locked.</p></div></header>
+  <div class="card">
+    <p><b>Short version:</b> Tijori locks everything on your own device with your master password before it goes anywhere. Nobody else, including the maker and Google, can read what you store.</p>
+  </div>
+  <h2>What stays on your device</h2>
+  <p>Your master password and the key made from it never leave the device. Documents are read (OCR) on the device too.</p>
+  <h2>Google sign-in and Drive</h2>
+  <p>If you turn on sync, Tijori asks Google for two things only:</p>
+  <ul>
+    <li><b>Your email address</b>, to show which account the vault syncs with.</li>
+    <li><b>Its own hidden app folder in your Google Drive</b> (the <code>drive.appdata</code> permission). Tijori cannot see or touch any other file in your Drive.</li>
+  </ul>
+  <p>Only encrypted files go into that folder (XChaCha20-Poly1305, key from Argon2id). They stay in <i>your</i> Google account. Tijori has no server of its own and collects no analytics.</p>
+  <h2>Removing your data</h2>
+  <p>Sign out in Tijori's Settings to stop syncing. To delete the cloud copy, open Google Drive on the web → Settings → Manage apps → Tijori → Delete hidden app data.</p>
+  <footer>Made by Angad Jangir, IIT Madras · <a href="./">Open Tijori</a></footer>
+</main>
+</body>
+</html>
