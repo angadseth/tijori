@@ -1,19 +1,446 @@
 <!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#F6F1E9" />
-    <meta name="description" content="Tijori: your documents and passwords, locked. Same vault on your phone and PC." />
-    <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="icon" type="image/png" href="./icon-192.png" />
-    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
-    <title>Tijori</title>
-    <script type="module" crossorigin src="/tijori/assets/index-CeYq80Fk.js"></script>
-    <link rel="stylesheet" crossorigin href="/tijori/assets/index-DqyzCxYo.css">
-  </head>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-BFqQ7blmpNGV+Zm6DyrAsztrCsbpglO7n6HIZXKM27Q='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script>(function(d,m){if(m("(display-mode: standalone),(display-mode: fullscreen),(display-mode: minimal-ui)").matches||navigator.standalone===true){location.replace("./app/"+location.search+location.hash);return}var u=navigator.userAgent,p=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||"";d.dataset.os=/android/i.test(u)?"android":/iphone|ipad|ipod/i.test(u)||(navigator.maxTouchPoints>1&&/mac/i.test(p))?"ios":/win/i.test(p)?"windows":/mac/i.test(p)?"mac":/linux|cros/i.test(p)?"linux":"other";d.classList.add("js")})(document.documentElement,matchMedia)</script>
+<title>Tijori: your documents and passwords, locked</title>
+<meta name="description" content="A free, private vault for Windows and your phone. Tijori reads, names and files your documents, keeps your passwords and cards, and encrypts everything on your device. No account, no tracking. Syncs through your own Google Drive.">
+<link rel="canonical" href="https://angadseth.github.io/tijori/">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E0F11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/newsreader-display-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tijori">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="Tijori: your documents and passwords, locked">
+<meta property="og:description" content="A free, private vault for Windows and your phone. Encrypted on your device, synced through your own Google Drive. No account, no tracking.">
+<meta property="og:url" content="https://angadseth.github.io/tijori/">
+<meta property="og:image" content="https://angadseth.github.io/tijori/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Tijori wordmark in Devanagari and Latin, with the line: your documents and passwords, locked.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tijori: your documents and passwords, locked">
+<meta name="twitter:description" content="A free, private vault for Windows and your phone. Encrypted on your device, synced through your own Google Drive.">
+<meta name="twitter:image" content="https://angadseth.github.io/tijori/og.png">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Tijori","alternateName":"तिजोरी","description":"A private vault for documents, passwords, cards, notes and ideas, encrypted on your device.","applicationCategory":"SecurityApplication","operatingSystem":"Windows 10, Windows 11, Android, iOS","softwareVersion":"4.0.0","datePublished":"2026-10-29","url":"https://angadseth.github.io/tijori/","downloadUrl":"https://angadseth.github.io/tijori/download.html","offers":{"@type":"Offer","price":"0","priceCurrency":"INR"},"author":{"@type":"Person","name":"Angad Jangir","affiliation":{"@type":"CollegeOrUniversity","name":"IIT Madras"}}}</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg class="sr-only" aria-hidden="true" focusable="false"><defs><path id="wm-deva" d="M21.97 90.9H21.01L13.33 85.91L13.71 37.14H5.27L2 30.9V29.94H14.19Q12.47 27.25 11.7 24.61Q10.93 21.97 10.93 19.48Q10.93 15.64 12.9 12.37Q14.87 9.11 18.99 7.04Q23.12 4.98 29.36 4.98Q35.03 4.98 40.88 6.95Q46.74 8.92 53.36 13.33Q59.99 17.75 67.76 24.95L65.17 27.92Q60.08 23.6 54.71 20.1Q49.33 16.6 43.71 14.48Q38.1 12.37 32.34 12.37Q27.25 12.37 24.03 14.05Q20.82 15.73 19.38 18.32Q17.94 20.92 17.94 23.89Q17.94 25.52 18.37 26.96Q18.8 28.4 19.57 29.94H29.75L33.01 36.18V37.14H21.78ZM51.73 90.42H50.77Q43.95 81.59 39.44 74.48Q34.93 67.38 34.93 61.24Q34.93 54.13 40.45 50.92Q45.97 47.7 55.09 47.7H68.63L68.72 37.14H30.9L27.63 30.9V29.94H84.75L88.02 36.18V37.14H76.79L76.98 90.42H76.02L68.34 85.43L68.53 54.9H56.15Q49.14 54.9 45.73 58.02Q42.32 61.14 42.32 65.65Q42.32 67.76 42.95 69.68Q43.57 71.6 45.06 73.91Q46.55 76.21 49.19 79.33Q51.83 82.45 55.86 87.06ZM116.53 81.3Q111.63 81.3 107.46 78.85Q103.28 76.4 99.73 72.23Q96.18 68.05 93.15 62.77Q90.13 57.49 87.44 51.73L91.38 50Q96.37 60.47 101.94 67Q107.51 73.52 113.94 73.52Q117.87 73.52 120.08 71.27Q122.29 69.01 122.29 65.84Q122.29 62.77 119.94 59.84Q117.59 56.92 112.88 54.8L110.29 49.24V48.18H139.19L139.28 37.14H85.91L82.64 30.9V29.94H155.31L158.58 36.18V37.14H147.35L147.54 90.42H146.58L138.9 85.43L139.09 55.38H122.1Q125.94 59.32 127.91 62.58Q129.87 65.84 129.87 69.49Q129.87 73.24 128 75.88Q126.13 78.52 123.11 79.91Q120.08 81.3 116.53 81.3ZM184.21 37.14H172.98L173.17 90.9H172.21L164.53 85.91L164.91 37.14H156.47L153.2 30.9V29.94H165.97Q161.84 22.84 158.96 18.71Q155.79 14.39 153.39 12.61Q150.99 10.84 148.31 10.84Q146.77 10.84 144.03 11.12Q141.3 11.41 139.09 11.89L134.67 3.73L134.77 3.06Q138.51 2.39 141.2 2.2Q143.89 2 144.75 2Q149.65 2 153.87 5.65Q158.1 9.3 162.42 15.83Q166.45 21.97 171.15 29.94H180.95L184.21 36.18ZM212.43 91.38H211.47L192.47 68.05Q188.91 63.73 187.43 61Q185.94 58.26 185.94 56.63Q185.94 53.56 190.83 53.56Q192.27 53.56 194.77 53.75Q197.27 53.94 198.99 54.13Q199.47 51.73 199.62 48.61Q199.76 45.49 199.76 43.19Q199.76 41.17 199.71 39.73Q199.67 38.29 199.57 37.14H182.1L178.83 30.9V29.94H218.77L222.03 36.18V37.14H207.54Q207.63 38.96 207.73 41.17Q207.83 43.38 207.83 44.24Q207.83 52.12 206.67 56.72Q205.52 61.33 203.17 63.64Q200.82 65.94 197.36 66.71L217.33 87.35ZM236.63 90.9H235.67L227.99 85.91L228.37 37.14H219.92L216.66 30.9V29.94H229.04Q228.37 23.51 226.16 19.67Q223.95 15.83 220.83 14.1Q217.71 12.37 214.35 12.37Q209.94 12.37 207.54 14.72Q205.14 17.08 205.14 20.72Q205.14 23.22 206.48 26.2L203.6 27.83Q201.2 25.33 200 22.5Q198.8 19.67 198.8 16.88Q198.8 12.08 202.16 8.53Q205.52 4.98 211.76 4.98Q217.23 4.98 221.99 8Q226.74 11.03 230.24 16.64Q233.75 22.26 235.38 29.94H244.4L247.67 36.18V37.14H236.43Z"/><path id="wm-latin" d="M74.24 131.3Q72.74 131.3 71.54 131.44Q70.33 131.57 69.46 131.72Q68.44 131.91 67.64 132.14L68.01 130.08Q68.16 130.1 68.47 130.11Q68.77 130.12 69.14 130.13Q69.52 130.15 69.93 130.15Q70.34 130.16 70.71 130.17Q71.08 130.17 71.37 130.18Q71.65 130.18 71.78 130.18H79.03Q79.15 130.18 79.44 130.18Q79.73 130.17 80.09 130.17Q80.46 130.16 80.87 130.15Q81.29 130.15 81.66 130.13Q82.04 130.12 82.34 130.11Q82.65 130.1 82.8 130.08L83.17 132.14Q82.35 131.91 81.34 131.72Q80.46 131.57 79.26 131.44Q78.05 131.3 76.55 131.3V143.43Q76.55 144.51 76.58 145.31Q76.62 146.12 76.66 146.7Q76.7 147.29 76.77 147.68Q76.84 148.07 76.92 148.34V148.39H73.89V148.34Q73.96 148.07 74.03 147.68Q74.09 147.29 74.14 146.7Q74.19 146.12 74.22 145.31Q74.24 144.51 74.24 143.43ZM93.94 148.34Q94.01 148.07 94.08 147.68Q94.14 147.29 94.19 146.7Q94.24 146.12 94.27 145.31Q94.29 144.51 94.29 143.43V135.16Q94.29 134.08 94.27 133.28Q94.24 132.47 94.19 131.88Q94.14 131.29 94.08 130.9Q94.01 130.5 93.94 130.24V130.18H96.97V130.24Q96.89 130.5 96.82 130.9Q96.75 131.29 96.71 131.88Q96.67 132.47 96.63 133.28Q96.6 134.08 96.6 135.16V143.43Q96.6 144.51 96.63 145.31Q96.67 146.12 96.71 146.7Q96.75 147.29 96.82 147.68Q96.89 148.07 96.97 148.34V148.39H93.94ZM112.13 145.76Q112.13 147.48 111.78 148.73Q111.43 149.99 110.81 150.96Q110.18 151.93 109.32 152.69Q108.46 153.46 107.45 154.19L107.22 153.87Q108.1 153.07 108.61 152.21Q109.12 151.35 109.4 150.36Q109.67 149.38 109.75 148.24Q109.82 147.11 109.82 145.76V135.16Q109.82 134.08 109.8 133.28Q109.77 132.47 109.72 131.88Q109.67 131.29 109.6 130.9Q109.53 130.5 109.45 130.24V130.18H112.5V130.24Q112.42 130.5 112.35 130.9Q112.28 131.29 112.23 131.88Q112.18 132.47 112.16 133.28Q112.13 134.08 112.13 135.16ZM133.17 129.88Q135.29 129.88 137.09 130.57Q138.89 131.26 140.19 132.51Q141.5 133.77 142.24 135.52Q142.97 137.27 142.97 139.39Q142.97 140.6 142.69 141.76Q142.41 142.93 141.88 143.97Q141.34 145.01 140.55 145.9Q139.76 146.78 138.75 147.42Q137.74 148.06 136.52 148.42Q135.31 148.78 133.9 148.78Q131.78 148.78 129.98 148.1Q128.18 147.43 126.88 146.18Q125.57 144.94 124.83 143.19Q124.1 141.45 124.1 139.31Q124.1 138.11 124.37 136.94Q124.65 135.77 125.19 134.72Q125.73 133.66 126.51 132.78Q127.29 131.9 128.3 131.25Q129.31 130.6 130.54 130.24Q131.76 129.88 133.17 129.88ZM133.9 147.64Q135.31 147.64 136.47 147.13Q137.64 146.63 138.49 145.66Q139.33 144.7 139.8 143.31Q140.27 141.92 140.27 140.15Q140.27 138.2 139.82 136.53Q139.37 134.86 138.48 133.63Q137.59 132.41 136.26 131.71Q134.94 131.02 133.17 131.02Q131.76 131.02 130.6 131.52Q129.43 132.03 128.58 132.98Q127.74 133.93 127.27 135.31Q126.8 136.7 126.8 138.46Q126.8 140.4 127.24 142.09Q127.69 143.77 128.58 145Q129.47 146.23 130.8 146.94Q132.13 147.64 133.9 147.64ZM157.35 143.43Q157.35 144.51 157.38 145.31Q157.41 146.12 157.46 146.7Q157.5 147.29 157.57 147.68Q157.64 148.07 157.72 148.34V148.39H154.67V148.34Q154.75 148.07 154.82 147.68Q154.89 147.29 154.93 146.7Q154.97 146.12 155.01 145.32Q155.04 144.52 155.04 143.43V135.16Q155.04 134.08 155.01 133.28Q154.97 132.47 154.93 131.89Q154.89 131.3 154.82 130.9Q154.75 130.5 154.67 130.24V130.18L155.2 130.24Q155.44 130.26 155.74 130.27Q156.04 130.27 156.36 130.27Q156.85 130.27 157.7 130.15Q158.54 130.03 159.85 130.03Q161.07 130.03 162.1 130.36Q163.14 130.69 163.9 131.33Q164.66 131.96 165.09 132.88Q165.51 133.8 165.51 134.97Q165.51 135.89 165.28 136.67Q165.04 137.45 164.62 138.08Q164.19 138.72 163.59 139.2Q163 139.69 162.26 140.02L166.72 146.28Q167.05 146.75 167.33 147.1Q167.62 147.44 167.88 147.69Q168.14 147.93 168.38 148.09Q168.62 148.25 168.88 148.34V148.39H165.21Q165.17 148.15 164.96 147.75Q164.75 147.35 164.47 146.96L159.98 140.62Q159.68 140.65 159.39 140.66Q159.1 140.68 158.8 140.68Q158.44 140.68 158.08 140.66Q157.72 140.63 157.35 140.57ZM157.35 139.58Q157.69 139.66 158.05 139.69Q158.4 139.72 158.73 139.72Q159.68 139.72 160.47 139.43Q161.26 139.15 161.81 138.56Q162.36 137.98 162.67 137.11Q162.97 136.24 162.97 135.07Q162.97 134.12 162.76 133.35Q162.54 132.57 162.12 132.03Q161.69 131.49 161.04 131.19Q160.4 130.9 159.53 130.9Q158.66 130.9 158.14 130.98Q157.62 131.07 157.35 131.18ZM178.99 148.34Q179.06 148.07 179.13 147.68Q179.19 147.29 179.24 146.7Q179.29 146.12 179.32 145.31Q179.34 144.51 179.34 143.43V135.16Q179.34 134.08 179.32 133.28Q179.29 132.47 179.24 131.88Q179.19 131.29 179.13 130.9Q179.06 130.5 178.99 130.24V130.18H182.02V130.24Q181.94 130.5 181.87 130.9Q181.8 131.29 181.76 131.88Q181.71 132.47 181.68 133.28Q181.65 134.08 181.65 135.16V143.43Q181.65 144.51 181.68 145.31Q181.71 146.12 181.76 146.7Q181.8 147.29 181.87 147.68Q181.94 148.07 182.02 148.34V148.39H178.99Z"/></defs></svg>
 
-  <body>
-    <div id="root"></div>
-  </body>
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="./" aria-label="Tijori home">
+      <img src="assets/brand/logo.svg" width="30" height="30" alt="">
+      <svg class="wm-latin" viewBox="66.64 128.88 116.38 26.31" aria-hidden="true"><use href="#wm-latin"/></svg>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="#features">Features</a>
+      <a href="security.html">Security</a>
+      <a href="changelog.html">Changelog</a>
+      <a href="help.html">Help</a>
+      <a href="app/">Phone app</a>
+    </nav>
+    <a class="btn btn--line btn--sm head-cta" href="download.html">Download</a>
+    <details class="menu">
+      <summary aria-label="Menu"><svg class="icon i-open" aria-hidden="true"><use href="assets/icons.svg#i-menu"/></svg><svg class="icon i-close" aria-hidden="true"><use href="assets/icons.svg#i-x"/></svg></summary>
+      <div class="menu-panel">
+        <ul>
+          <li><a href="#features">Features</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="help.html">Help</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+        <a class="btn btn--brass" href="app/">Open the phone app</a>
+        <p class="menu-note">Installs from your browser. No app store.</p>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <svg class="hero-arch" viewBox="-24 -10 508 780" aria-hidden="true" focusable="false">
+      <defs>
+        <pattern id="jaali" width="36" height="36" x="32" y="4" patternUnits="userSpaceOnUse">
+          <path d="M18 0 36 18 18 36 0 18ZM5.27 5.27h25.46v25.46H5.27ZM0 0l5.27 5.27M36 0l-5.27 5.27M36 36l-5.27-5.27M0 36l5.27-5.27" fill="none" stroke="currentColor" stroke-width=".6"/>
+        </pattern>
+        <clipPath id="arch-in"><path d="M14 272C14 178 80 122 155 98 197 84 219 66 230 40c11 26 33 44 75 58 75 24 141 80 141 174v498H14Z"/></clipPath>
+        <linearGradient id="arch-fade" x1="0" y1="0" x2="0" y2="1"><stop offset=".25" stop-color="#fff"/><stop offset=".64" stop-color="#fff" stop-opacity="0"/></linearGradient>
+        <mask id="arch-mask" maskUnits="userSpaceOnUse" x="-24" y="-10" width="508" height="780"><rect x="-24" y="-10" width="508" height="780" fill="url(#arch-fade)"/></mask>
+      </defs>
+      <g mask="url(#arch-mask)">
+        <rect class="arch-jaali" x="0" y="0" width="460" height="770" fill="url(#jaali)" clip-path="url(#arch-in)"/>
+        <path class="arch-inner" d="M14 770V272C14 178 80 122 155 98 197 84 219 66 230 40c11 26 33 44 75 58 75 24 141 80 141 174v498"/>
+        <path class="arch-line" pathLength="1" d="M0 770V270C0 170 70 110 150 85 195 70 218 50 230 20"/>
+        <path class="arch-line" pathLength="1" d="M460 770V270C460 170 390 110 310 85 265 70 242 50 230 20"/>
+      </g>
+    </svg>
+
+    <div class="wrap">
+      <p class="lockup" role="img" aria-label="Tijori, तिजोरी">
+        <svg class="wm-deva" viewBox="1 1 247.67 91.38" aria-hidden="true"><use href="#wm-deva"/></svg>
+        <span class="rule"></span>
+        <svg class="wm-latin" viewBox="66.64 128.88 116.38 26.31" aria-hidden="true"><use href="#wm-latin"/></svg>
+      </p>
+      <h1 class="d-hero" id="hero-title">Your documents and passwords, <i>locked.</i></h1>
+      <p class="lead">A private vault for your papers, passwords, cards, notes and ideas. Tijori files documents by itself, and encrypts everything on your device before it goes anywhere.</p>
+
+      <div class="cta not-phone">
+        <a class="btn btn--brass" href="https://github.com/angadseth/tijori/releases/latest" data-href="setup">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download"/></svg>Download for Windows
+        </a>
+        <p class="cta-meta" data-v="line" data-pending="Releasing today · Windows 10 and 11">Free · Windows 10 and 11, 64-bit</p>
+        <p class="cta-alt only-other">Tijori is a Windows app. On this computer you can <a class="link" href="app/">use the web app</a>.</p>
+        <p class="cta-alt not-other">Or <a class="link" href="#phone">use it on your phone</a></p>
+      </div>
+      <div class="cta only-phone">
+        <a class="btn btn--brass" href="app/">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-smartphone"/></svg>Open Tijori on this phone
+        </a>
+        <p class="cta-meta">Installs from your browser. No app store, no account.</p>
+        <p class="cta-alt">Or <a class="link" href="download.html">get it for Windows</a></p>
+      </div>
+
+      <figure class="reveal shot-pair">
+        <div class="frame shot-desktop"><img src="assets/shots/home-desktop.webp" width="1600" height="1000" alt="Tijori's home screen on Windows: a greeting, quick actions, vault health, documents that expire soon and recent items." fetchpriority="high" decoding="async"></div>
+        <div class="frame frame--phone shot-phone"><img src="assets/shots/home-phone.webp" width="780" height="1688" alt="Tijori's home screen on a phone." loading="lazy" decoding="async"></div>
+        <figcaption><span class="fig">Fig. 1</span><span>Home: what needs a look, what expires soon, and what you opened last.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec--tight" aria-label="In short">
+    <div class="wrap">
+      <ul class="facts">
+        <li class="fact"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-lock"/></svg><b>Encrypted on your device</b><span>Argon2id and XChaCha20-Poly1305</span></li>
+        <li class="fact"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-server-off"/></svg><b>No Tijori server</b><span>No account, no analytics, no ads</span></li>
+        <li class="fact"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-wifi-off"/></svg><b>Works offline</b><span>Reading and search stay on the device</span></li>
+        <li class="fact"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-cloud"/></svg><b>Your own Google Drive</b><span>Optional sync of sealed files only</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="features" aria-labelledby="by-itself">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow"><span class="roman">I.</span>By itself</p>
+        <h2 class="d1" id="by-itself">Drop a file. Tijori does the filing.</h2>
+        <p class="lead">Drag in a PDF, a phone photo or a screenshot. Tijori reads it on your device, works out what it is, gives it a proper name and puts it where it belongs. You step in only when it isn't sure.</p>
+      </header>
+      <figure class="reveal">
+        <div class="frame"><img src="assets/shots/library-desktop.webp" width="1600" height="1000" alt="A sample PAN card open in Tijori: the scan on the left; its name, folder, owner and the PAN number Tijori read from it on the right, ready to copy." loading="lazy" decoding="async"></div>
+        <figcaption><span class="fig">Fig. 2</span><span>A PAN card, filed and named by itself. The panel shows what Tijori read from it, ready to copy.</span></figcaption>
+      </figure>
+      <ol class="verbs">
+        <li class="verb"><span class="roman">I</span><h3>Reads</h3><p>The PDF's own text, or offline OCR for photos and scans, in English and Hindi (on Windows, Hindi needs its language pack). Nothing is uploaded to be read.</p></li>
+        <li class="verb"><span class="roman">II</span><h3>Names</h3><p>"Aadhaar Card — Riya Sharma", "IITM Grade Card — Sem 3". Clear names instead of IMG_2041.jpg.</p></li>
+        <li class="verb"><span class="roman">III</span><h3>Files</h3><p>Into Identity, Education, Bank and finance, Tax, Medical, Vehicle and more, by what the paper says, not the file type.</p></li>
+        <li class="verb"><span class="roman">IV</span><h3>Tracks</h3><p>Expiry dates for passports, licences, insurance and PUC, with reminders before they lapse.</p></li>
+      </ol>
+      <p class="aside-line"><span>Not sure? It asks once and remembers your answer</span><span>Exact duplicates are skipped</span><span>Your own folders and family members too</span></p>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="indian-papers">
+    <div class="wrap">
+      <div class="split">
+        <header class="sec-head sticky-head">
+          <p class="eyebrow"><span class="roman">II.</span>Made for Indian paperwork</p>
+          <h2 class="d1" id="indian-papers">Indian papers, handled properly.</h2>
+          <p class="lead">Tijori knows 32 kinds of document, and it checks the numbers on the ones that matter, so a misread digit never ends up on a form.</p>
+        </header>
+        <div>
+          <ol class="ledger">
+            <li><span class="name">Aadhaar</span><span class="what">The 12-digit number is verified with its checksum. Front and back are paired, and the address and PIN are read from the back.</span><span class="tag">Verhoeff check</span></li>
+            <li><span class="name">PAN</span><span class="what">The number's pattern is checked and the holder's name is picked up.</span><span class="tag">Pattern check</span></li>
+            <li><span class="name">Passport</span><span class="what">The machine-readable lines are read and their check digits verified. Expiry is tracked.</span><span class="tag">MRZ check digits</span></li>
+            <li><span class="name">Driving licence</span><span class="what">Licence number and validity, with a reminder before it needs renewing.</span><span class="tag">Expiry tracked</span></li>
+            <li><span class="name">Voter ID, RC, PUC</span><span class="what">Numbers pulled out for one-click copy. PUC and insurance expiry tracked.</span><span class="tag">Expiry tracked</span></li>
+            <li><span class="name">Marksheets</span><span class="what">Grade cards, marksheets, hall tickets, fee receipts and degree certificates, each named by exam or semester.</span><span class="tag">Roll numbers</span></li>
+            <li><span class="name">Bank and tax</span><span class="what">Statements, passbooks, Form 16, ITR and salary slips, with IFSC and account numbers ready to copy.</span><span class="tag">Ready to copy</span></li>
+          </ol>
+          <p class="ledger-foot">Also insurance, medical reports, vaccination and birth certificates, rent agreements, property papers, tickets, visas, warranties and bills.</p>
+        </div>
+      </div>
+
+      <div class="lead-item reveal">
+        <div>
+          <p class="eyebrow">The paperwork, done</p>
+          <h3 class="d2">Locked e-Aadhaar PDFs open by themselves.</h3>
+          <p class="body">The e-Aadhaar you download from UIDAI is locked with a password made from the first four letters of your name and your year of birth. Tijori tries it for you from the details it already holds, so the file opens without a hunt.</p>
+        </div>
+        <figure>
+          <div class="frame"><img src="assets/shots/masked-aadhaar.webp" width="1600" height="1000" alt="Making a masked copy of a sample Aadhaar: a box hides the first eight digits and a tilted watermark says the copy is only for KYC at Demo Bank." loading="lazy" decoding="async"></div>
+          <figcaption><span class="fig">Fig. 3</span><span>A masked Aadhaar with a purpose line across it, ready to share.</span></figcaption>
+        </figure>
+      </div>
+
+      <ul class="items reveal">
+        <li class="item"><h3>Masked Aadhaar, with a purpose</h3><p>Share a copy with the first eight digits hidden and a line across it, such as "For KYC at HDFC Bank only, 29 Oct 2026". On Windows Tijori finds the digits for you; on the phone you drag a box over them.</p></li>
+        <li class="item"><h3>Packs for the usual errands</h3><p>KYC, passport, licence renewal, admission. Tijori gathers the papers each one needs, shows what is missing, and makes one PDF to send.</p></li>
+        <li class="item"><h3>Sized for government forms</h3><p>Compress a scan to under 20, 50, 100, 200, 300 or 500 KB, crop a passport photo to 35 × 45 mm, turn photos into one PDF, and merge, split, reorder or rotate PDF pages.</p></li>
+        <li class="item"><h3>Straight to WhatsApp</h3><p>Send the real file through the Windows or phone share sheet, not a link. On Windows, shared copies sit in a private folder that is wiped after ten minutes.</p></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="passwords">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow"><span class="roman">III.</span>Passwords and more</p>
+        <h2 class="d1" id="passwords">Your passwords live here too.</h2>
+        <p class="lead">Logins, bank details, cards, Wi-Fi and 2FA codes, kept in the same vault as your papers and sealed with the same key.</p>
+      </header>
+      <figure class="reveal">
+        <div class="frame"><img src="assets/shots/passwords-desktop.webp" width="1600" height="1000" alt="The passwords screen: a list on the left and one bank login in detail on the right." loading="lazy" decoding="async"></div>
+        <figcaption><span class="fig">Fig. 4</span><span>Passwords: the list on the left, everything about one login on the right.</span></figcaption>
+      </figure>
+      <ul class="items reveal">
+        <li class="item"><h3>Passwords</h3><p>Logins, bank accounts with IFSC and MPIN, Wi-Fi, API keys, licences and memberships, plus your own details (name, address, PAN) ready to copy. A generator, password history, and CSV import from Chrome, Edge, Firefox, Bitwarden, LastPass, 1Password or KeePass.</p></li>
+        <li class="item"><h3>Cards</h3><p>A wallet that recognises Visa, Mastercard, RuPay, Amex and Diners, with finishes you choose. Showing a CVV or PIN asks for your master password again.</p></li>
+        <li class="item"><h3>Authenticator</h3><p>Every 2FA code in one place with a large countdown. Add an account from a QR code in an image or on the clipboard, or type its secret.</p></li>
+        <li class="item"><h3>Health check</h3><p>One score for the whole vault: weak, reused and old passwords, breached ones if you switch that check on, accounts without 2FA, expiring documents and backup age. Each row has a button that fixes it.</p></li>
+      </ul>
+      <p class="footnote">Copied secrets stay out of Windows clipboard history and clear after 30 seconds.</p>
+    </div>
+  </section>
+
+  <section class="sec band" aria-labelledby="yours">
+    <div class="wrap">
+      <div class="split split--center">
+        <header class="sec-head">
+          <p class="eyebrow"><span class="roman">IV.</span>Make it yours</p>
+          <h2 class="d1" id="yours">Make it feel like yours.</h2>
+          <p class="lead">Every device keeps its own look, so the laptop can be dark while the phone stays light. Change it in Settings and watch a live preview follow along.</p>
+        </header>
+        <div>
+          <ul class="swatches" aria-label="Eight themes">
+            <li class="swatch"><div class="chip sw-1"><i></i></div></li>
+            <li class="swatch"><div class="chip sw-2"><i></i></div></li>
+            <li class="swatch"><div class="chip sw-3"><i></i></div></li>
+            <li class="swatch"><div class="chip sw-4"><i></i></div></li>
+            <li class="swatch"><div class="chip sw-5"><i></i></div></li>
+            <li class="swatch"><div class="chip sw-6"><i></i></div></li>
+            <li class="swatch"><div class="chip sw-7"><i></i></div></li>
+            <li class="swatch"><div class="chip sw-8"><i></i></div></li>
+          </ul>
+          <p class="accents" aria-label="Eight accent finishes"><b class="ac-1"></b><b class="ac-2"></b><b class="ac-3"></b><b class="ac-4"></b><b class="ac-5"></b><b class="ac-6"></b><b class="ac-7"></b><b class="ac-8"></b><span>Eight themes, eight accents</span></p>
+        </div>
+      </div>
+      <dl class="spec reveal">
+        <div><dt>Themes</dt><dd>Eight, or Match Windows to pair a light one with a dark one</dd></div>
+        <div><dt>Accents</dt><dd>Eight, from brass and saffron to silver and ink</dd></div>
+        <div><dt>Type</dt><dd>Four font pairings, or Windows' own fonts</dd></div>
+        <div><dt>Text size</dt><dd>90, 100, 110 or 125%</dd></div>
+        <div><dt>Density</dt><dd>Compact, comfortable or spacious</dd></div>
+        <div><dt>Corners</dt><dd>Sharp, soft or round</dd></div>
+        <div><dt>Motion</dt><dd>Full, subtle or off, and it follows Windows</dd></div>
+        <div><dt>Texture</dt><dd>None, paper grain, linen or jaali</dd></div>
+        <div><dt>Language</dt><dd>English or <span lang="hi">हिन्दी</span> for the menus, home, lock screen and settings</dd></div>
+        <div><dt>Dates</dt><dd class="mono"><span class="keys">29/10/2026</span> · <span class="keys">29 Oct 2026</span> · <span class="keys">2026-10-29</span></dd></div>
+        <div><dt>Card finishes</dt><dd>Black metal, gold, platinum, emerald or rose</dd></div>
+        <div><dt>Its name</dt><dd>"Riya's Tijori" on the lock screen and in the sidebar</dd></div>
+      </dl>
+      <figure class="reveal">
+        <div class="frame"><img src="assets/shots/personalize-desktop.webp" width="1600" height="1000" alt="Settings, Personalize: a live miniature of the app above the theme, accent, font, text size, density, corner, motion and background controls." loading="lazy" decoding="async"></div>
+        <figcaption><span class="fig">Fig. 5</span><span>Settings, Personalize. The miniature at the top changes as you do.</span></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="private">
+    <div class="wrap">
+      <header class="sec-head">
+        <p class="eyebrow"><span class="roman">V.</span>Private by design</p>
+        <h2 class="d1" id="private">There is no Tijori server.</h2>
+        <p class="lead">No account to make, nothing to log in to, no analytics and no ads. Your vault is sealed on your device with a key made from your master password. If you sync, Google keeps only the sealed files, in a hidden folder of your own Drive.</p>
+      </header>
+      <ol class="flow" aria-label="How sync works">
+        <li class="node"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-monitor"/></svg><b>Your PC</b><span>Opens with your master password</span></li>
+        <li class="pipe" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-lock"/></svg>sealed</span></li>
+        <li class="node node--drive"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-cloud"/></svg><b>Your Google Drive</b><span>A hidden app folder that holds sealed files only</span></li>
+        <li class="pipe" aria-hidden="true"><span><svg class="icon"><use href="assets/icons.svg#i-lock"/></svg>sealed</span></li>
+        <li class="node"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-smartphone"/></svg><b>Your phone</b><span>Opens with the same password</span></li>
+      </ol>
+      <ul class="who">
+        <li><span class="who-label">What Google can see</span><h3>Sealed files, not their contents.</h3><p>That Tijori's hidden folder exists, how large the sealed files are and when they changed, and your email address. Not one word inside them.</p></li>
+        <li><span class="who-label">What we can see</span><h3>Nothing at all.</h3><p>There is no server for anything to reach, and no analytics or crash reports. This website has no tracking either.</p></li>
+        <li><span class="who-label">What only you can open</span><h3>Everything.</h3><p>With your master password, or with the recovery key you keep on paper. Without one of them, nobody can open the vault, including us.</p></li>
+      </ul>
+      <p class="cipher"><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-key-round"/></svg><span>Argon2id · 64 MiB · 3 passes</span><span aria-hidden="true">→</span><span>256-bit key</span><span aria-hidden="true">→</span><span>XChaCha20-Poly1305</span><a class="link" href="security.html">How Tijori protects your data<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg></a></p>
+    </div>
+  </section>
+
+  <section class="sec band" id="phone" aria-labelledby="everywhere">
+    <div class="wrap">
+      <div class="platforms">
+        <div>
+          <header class="sec-head">
+            <p class="eyebrow"><span class="roman">VI.</span>Everywhere you are</p>
+            <h2 class="d1" id="everywhere">One vault on your PC and your phone.</h2>
+            <p class="lead">The Windows app and the phone app open the same vault. Add a paper on one and it reaches the other at the next sync, still sealed.</p>
+          </header>
+          <div class="reveal">
+            <div class="platform">
+              <h3><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-monitor"/></svg>On Windows</h3>
+              <p>Windows 10 and 11. Unlock with Windows Hello, find anything with <span class="keys"><kbd>Ctrl</kbd> <kbd>K</kbd></span>, and call Tijori from anywhere with <span class="keys"><kbd>Ctrl</kbd> <kbd>Shift</kbd> <kbd>Space</kbd></span>. It locks itself when Windows locks or sleeps, and can wait quietly in the tray.</p>
+            </div>
+            <div class="platform">
+              <h3><svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-smartphone"/></svg>On your phone</h3>
+              <p>Android or iPhone. It installs from the browser, with no app store, and opens your vault from Google Drive with your master password. Photograph a paper and it is filed like any other.</p>
+              <div class="scan">
+                <div class="qr" role="img" aria-label="QR code for the phone app"><svg viewBox="0 0 29 29" shape-rendering="crispEdges" aria-hidden="true"><path stroke="currentColor" d="M0 0.5h7m2 0h1m1 0h1m1 0h1m3 0h1m4 0h7m-29 1h1m5 0h1m1 0h3m5 0h1m5 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h5m2 0h1m6 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m3 0h2m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m7 0h1m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m3 0h3m3 0h3m3 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h1m2 0h1m3 0h2m1 0h1m1 0h1m-21 1h1m5 0h1m1 0h4m1 0h1m3 0h2m1 0h3m2 0h3m-28 1h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h7m3 0h2m1 0h2m-27 1h1m1 0h1m1 0h2m5 0h6m2 0h1m2 0h2m-21 1h1m3 0h2m1 0h1m2 0h1m3 0h1m5 0h2m-26 1h2m2 0h3m3 0h5m1 0h1m3 0h1m1 0h2m4 0h1m-29 1h1m1 0h1m2 0h1m1 0h3m5 0h10m2 0h2m-29 1h2m4 0h2m2 0h3m2 0h1m2 0h1m1 0h2m1 0h1m1 0h2m-23 1h2m3 0h3m2 0h3m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-29 1h2m1 0h6m6 0h3m7 0h2m-27 1h1m1 0h3m4 0h2m1 0h2m1 0h6m1 0h3m1 0h3m-29 1h2m1 0h2m1 0h2m3 0h1m3 0h1m3 0h2m1 0h2m1 0h1m2 0h1m-29 1h1m1 0h2m3 0h2m2 0h1m1 0h1m1 0h2m2 0h3m1 0h1m-24 1h1m1 0h2m1 0h2m5 0h1m1 0h1m2 0h8m1 0h3m-21 1h1m3 0h1m1 0h2m1 0h2m1 0h1m3 0h2m-26 1h7m2 0h3m3 0h1m1 0h1m1 0h2m1 0h1m1 0h3m-27 1h1m5 0h1m2 0h1m1 0h1m2 0h2m4 0h1m3 0h1m2 0h2m-29 1h1m1 0h3m1 0h1m2 0h2m1 0h3m1 0h1m2 0h7m2 0h1m-29 1h1m1 0h3m1 0h1m3 0h1m3 0h3m4 0h1m3 0h2m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h6m3 0h1m1 0h6m-28 1h1m5 0h1m2 0h4m3 0h1m1 0h1m2 0h6m1 0h1m-29 1h7m1 0h2m1 0h3m3 0h1m1 0h1m1 0h1m2 0h1m1 0h1"/></svg></div>
+                <p><span class="not-phone">Scan with your phone's camera, or open</span><a class="mono" href="app/">angadseth.github.io/tijori/app</a></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <figure>
+          <div class="frame frame--phone"><img src="assets/shots/viewer-phone.webp" width="780" height="1688" alt="A sample PAN card open on a phone, with buttons to crop it, open it, share it or send it on WhatsApp." loading="lazy" decoding="async"></div>
+          <figcaption><span class="fig">Fig. 6</span><span>A document on the phone, a tap away from WhatsApp.</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faq">
+    <div class="wrap wrap--text">
+      <header class="sec-head">
+        <p class="eyebrow"><span class="roman">VII.</span>Questions</p>
+        <h2 class="d1" id="faq">What people ask first.</h2>
+      </header>
+      <div class="faq reveal">
+        <details id="free">
+          <summary>Is Tijori really free?<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+          <div class="a"><p>Yes. There is no paid tier, no trial and no ads. Tijori has no server to pay for, and sync uses space in your own Google Drive.</p></div>
+        </details>
+        <details id="where">
+          <summary>Where is my data kept?<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+          <div class="a"><p>On your own devices: in <code>%APPDATA%\com.angad.tijori</code> on Windows, and in the browser's storage on your phone. If you turn on sync, sealed copies also go to a hidden app folder in your Google Drive that only Tijori can use.</p></div>
+        </details>
+        <details id="forgot">
+          <summary>What if I forget my master password?<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+          <div class="a"><p>Open the vault with the recovery key you saved when you made it, then choose a new password. Without the password or the recovery key, nobody can open the vault, including us. That is the point, so keep your Recovery Kit somewhere safe. <a href="help.html#forgot-password">How to recover</a></p></div>
+        </details>
+        <details id="smartscreen">
+          <summary>Why does Windows warn me when I install it?<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+          <div class="a"><p>Tijori is made by one developer and does not have a paid code-signing certificate, so SmartScreen may say "Windows protected your PC". Choose <b>More info</b>, then <b>Run anyway</b>. You can check the file's SHA-256 against the one on the <a href="download.html#verify">download page</a> first.</p></div>
+        </details>
+        <details id="google">
+          <summary>Do I need a Google account?<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+          <div class="a"><p>No. Tijori works fully on one device without one. Google Drive is only for keeping your PC and phone in step, and for a copy that lives somewhere other than your PC.</p></div>
+        </details>
+        <details id="uninstall">
+          <summary>What happens to my vault if I uninstall?<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+          <div class="a"><p>It stays where it is. The uninstaller removes your vault only if you tick "Delete the application data", and Tijori warns you before that happens. <a href="help.html#uninstall">Uninstalling safely</a></p></div>
+        </details>
+        <details id="source">
+          <summary>Is the source code public?<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+          <div class="a"><p>Not at the moment. The security design is published in full: the file format, the cryptography, and every network connection the app makes. <a href="security.html">Read it</a></p></div>
+        </details>
+        <details id="maker">
+          <summary>Who makes Tijori?<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+          <div class="a"><p>Angad Jangir, at IIT Madras. He built it to keep his own documents and passwords in one private place, and keeps it free.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec finale" aria-labelledby="finale-title">
+    <svg class="dial" viewBox="0 0 400 400" aria-hidden="true" focusable="false">
+      <circle cx="200" cy="200" r="198" fill="none" stroke="currentColor" stroke-opacity=".12"/>
+      <g class="dial-turn">
+        <circle cx="200" cy="200" r="187" fill="none" stroke="currentColor" stroke-opacity=".24" stroke-width="5" pathLength="100" stroke-dasharray=".06 .94" transform="rotate(-90.11 200 200)"/>
+        <circle cx="200" cy="200" r="186" fill="none" stroke="currentColor" stroke-opacity=".34" stroke-width="8" pathLength="20" stroke-dasharray=".012 .988" transform="rotate(-90.11 200 200)"/>
+        <circle cx="200" cy="200" r="184.5" fill="none" stroke="currentColor" stroke-opacity=".5" stroke-width="11" pathLength="10" stroke-dasharray=".01 .99" transform="rotate(-90.18 200 200)"/>
+        <g font-family="Geist Mono, ui-monospace, monospace" font-size="8.5" fill="currentColor" fill-opacity=".36" text-anchor="middle">
+          <text x="200" y="36">0</text><text x="200" y="36" transform="rotate(36 200 200)">10</text><text x="200" y="36" transform="rotate(72 200 200)">20</text><text x="200" y="36" transform="rotate(108 200 200)">30</text><text x="200" y="36" transform="rotate(144 200 200)">40</text><text x="200" y="36" transform="rotate(180 200 200)">50</text><text x="200" y="36" transform="rotate(216 200 200)">60</text><text x="200" y="36" transform="rotate(252 200 200)">70</text><text x="200" y="36" transform="rotate(288 200 200)">80</text><text x="200" y="36" transform="rotate(324 200 200)">90</text>
+        </g>
+        <circle cx="200" cy="200" r="152" fill="none" stroke="currentColor" stroke-opacity=".1"/>
+        <circle cx="200" cy="200" r="146" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="5" pathLength="120" stroke-dasharray=".5 .5"/>
+      </g>
+      <path class="dial-index" d="M195.5 3h9L200 11Z"/>
+    </svg>
+    <div class="wrap">
+      <p class="lockup" role="img" aria-label="Tijori, तिजोरी">
+        <svg class="wm-deva" viewBox="1 1 247.67 91.38" aria-hidden="true"><use href="#wm-deva"/></svg>
+        <span class="rule"></span>
+        <svg class="wm-latin" viewBox="66.64 128.88 116.38 26.31" aria-hidden="true"><use href="#wm-latin"/></svg>
+      </p>
+      <h2 class="d1" id="finale-title">Keep what matters in a tijori.</h2>
+      <div class="cta not-phone">
+        <a class="btn btn--brass" href="https://github.com/angadseth/tijori/releases/latest" data-href="setup">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-download"/></svg>Download for Windows
+        </a>
+        <p class="cta-meta" data-v="line" data-pending="Releasing today · Windows 10 and 11">Free · Windows 10 and 11, 64-bit</p>
+        <p class="cta-alt"><a class="link" href="download.html">All downloads, checksums and phone setup</a></p>
+      </div>
+      <div class="cta only-phone">
+        <a class="btn btn--brass" href="app/">
+          <svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-smartphone"/></svg>Open Tijori on this phone
+        </a>
+        <p class="cta-meta">Installs from your browser. No app store, no account.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <p class="lockup" role="img" aria-label="Tijori, तिजोरी">
+          <svg class="wm-deva" viewBox="1 1 247.67 91.38" aria-hidden="true"><use href="#wm-deva"/></svg>
+          <span class="rule"></span>
+          <svg class="wm-latin" viewBox="66.64 128.88 116.38 26.31" aria-hidden="true"><use href="#wm-latin"/></svg>
+        </p>
+        <p>Your documents and passwords, locked. A private vault for Windows and your phone.</p>
+      </div>
+      <nav class="foot-col" aria-label="Get Tijori">
+        <h2>Get Tijori</h2>
+        <ul>
+          <li><a href="download.html">Download for Windows</a></li>
+          <li><a href="app/">Phone app</a></li>
+          <li><a href="changelog.html">Release notes</a></li>
+          <li><a href="https://github.com/angadseth/tijori/releases">All releases</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Trust">
+        <h2>Trust</h2>
+        <ul>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="download.html#verify">Verify a download</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Help">
+        <h2>Help</h2>
+        <ul>
+          <li><a href="help.html">Help and guides</a></li>
+          <li><a href="help.html#smartscreen">The SmartScreen prompt</a></li>
+          <li><a href="help.html#forgot-password">Forgot your password</a></li>
+          <li><a href="https://github.com/angadseth/tijori/issues">Report a problem</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span class="maker">Made by Angad Jangir · IIT Madras</span>
+      <span>Version <span data-v="version" data-pending="4.0.0">4.0.0</span></span>
+      <span>No cookies, no analytics, no third-party requests.</span>
+    </div>
+  </div>
+</footer>
+</body>
 </html>

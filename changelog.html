@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-SU4i9lhRS+LGRF0fkjlFILuYqV82r9SUruCCo5QV2r8='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script>(function(d){var u=navigator.userAgent,p=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||"";d.dataset.os=/android/i.test(u)?"android":/iphone|ipad|ipod/i.test(u)||(navigator.maxTouchPoints>1&&/mac/i.test(p))?"ios":/win/i.test(p)?"windows":/mac/i.test(p)?"mac":/linux|cros/i.test(p)?"linux":"other";d.classList.add("js")})(document.documentElement)</script>
+<title>Changelog: what's new in Tijori</title>
+<meta name="description" content="Release notes for every version of Tijori, from 1.0 to 4.0 Heirloom: Windows Hello, a 30-day Trash, themes you can make your own, and signed updates.">
+<link rel="canonical" href="https://angadseth.github.io/tijori/changelog.html">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E0F11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/newsreader-display-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tijori">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="What's new in Tijori">
+<meta property="og:description" content="Release notes for every version, from 1.0 to 4.0 Heirloom.">
+<meta property="og:url" content="https://angadseth.github.io/tijori/changelog.html">
+<meta property="og:image" content="https://angadseth.github.io/tijori/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Tijori wordmark in Devanagari and Latin, with the line: your documents and passwords, locked.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What's new in Tijori">
+<meta name="twitter:description" content="Release notes for every version, from 1.0 to 4.0 Heirloom.">
+<meta name="twitter:image" content="https://angadseth.github.io/tijori/og.png">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg class="sr-only" aria-hidden="true" focusable="false"><defs><path id="wm-deva" d="M21.97 90.9H21.01L13.33 85.91L13.71 37.14H5.27L2 30.9V29.94H14.19Q12.47 27.25 11.7 24.61Q10.93 21.97 10.93 19.48Q10.93 15.64 12.9 12.37Q14.87 9.11 18.99 7.04Q23.12 4.98 29.36 4.98Q35.03 4.98 40.88 6.95Q46.74 8.92 53.36 13.33Q59.99 17.75 67.76 24.95L65.17 27.92Q60.08 23.6 54.71 20.1Q49.33 16.6 43.71 14.48Q38.1 12.37 32.34 12.37Q27.25 12.37 24.03 14.05Q20.82 15.73 19.38 18.32Q17.94 20.92 17.94 23.89Q17.94 25.52 18.37 26.96Q18.8 28.4 19.57 29.94H29.75L33.01 36.18V37.14H21.78ZM51.73 90.42H50.77Q43.95 81.59 39.44 74.48Q34.93 67.38 34.93 61.24Q34.93 54.13 40.45 50.92Q45.97 47.7 55.09 47.7H68.63L68.72 37.14H30.9L27.63 30.9V29.94H84.75L88.02 36.18V37.14H76.79L76.98 90.42H76.02L68.34 85.43L68.53 54.9H56.15Q49.14 54.9 45.73 58.02Q42.32 61.14 42.32 65.65Q42.32 67.76 42.95 69.68Q43.57 71.6 45.06 73.91Q46.55 76.21 49.19 79.33Q51.83 82.45 55.86 87.06ZM116.53 81.3Q111.63 81.3 107.46 78.85Q103.28 76.4 99.73 72.23Q96.18 68.05 93.15 62.77Q90.13 57.49 87.44 51.73L91.38 50Q96.37 60.47 101.94 67Q107.51 73.52 113.94 73.52Q117.87 73.52 120.08 71.27Q122.29 69.01 122.29 65.84Q122.29 62.77 119.94 59.84Q117.59 56.92 112.88 54.8L110.29 49.24V48.18H139.19L139.28 37.14H85.91L82.64 30.9V29.94H155.31L158.58 36.18V37.14H147.35L147.54 90.42H146.58L138.9 85.43L139.09 55.38H122.1Q125.94 59.32 127.91 62.58Q129.87 65.84 129.87 69.49Q129.87 73.24 128 75.88Q126.13 78.52 123.11 79.91Q120.08 81.3 116.53 81.3ZM184.21 37.14H172.98L173.17 90.9H172.21L164.53 85.91L164.91 37.14H156.47L153.2 30.9V29.94H165.97Q161.84 22.84 158.96 18.71Q155.79 14.39 153.39 12.61Q150.99 10.84 148.31 10.84Q146.77 10.84 144.03 11.12Q141.3 11.41 139.09 11.89L134.67 3.73L134.77 3.06Q138.51 2.39 141.2 2.2Q143.89 2 144.75 2Q149.65 2 153.87 5.65Q158.1 9.3 162.42 15.83Q166.45 21.97 171.15 29.94H180.95L184.21 36.18ZM212.43 91.38H211.47L192.47 68.05Q188.91 63.73 187.43 61Q185.94 58.26 185.94 56.63Q185.94 53.56 190.83 53.56Q192.27 53.56 194.77 53.75Q197.27 53.94 198.99 54.13Q199.47 51.73 199.62 48.61Q199.76 45.49 199.76 43.19Q199.76 41.17 199.71 39.73Q199.67 38.29 199.57 37.14H182.1L178.83 30.9V29.94H218.77L222.03 36.18V37.14H207.54Q207.63 38.96 207.73 41.17Q207.83 43.38 207.83 44.24Q207.83 52.12 206.67 56.72Q205.52 61.33 203.17 63.64Q200.82 65.94 197.36 66.71L217.33 87.35ZM236.63 90.9H235.67L227.99 85.91L228.37 37.14H219.92L216.66 30.9V29.94H229.04Q228.37 23.51 226.16 19.67Q223.95 15.83 220.83 14.1Q217.71 12.37 214.35 12.37Q209.94 12.37 207.54 14.72Q205.14 17.08 205.14 20.72Q205.14 23.22 206.48 26.2L203.6 27.83Q201.2 25.33 200 22.5Q198.8 19.67 198.8 16.88Q198.8 12.08 202.16 8.53Q205.52 4.98 211.76 4.98Q217.23 4.98 221.99 8Q226.74 11.03 230.24 16.64Q233.75 22.26 235.38 29.94H244.4L247.67 36.18V37.14H236.43Z"/><path id="wm-latin" d="M74.24 131.3Q72.74 131.3 71.54 131.44Q70.33 131.57 69.46 131.72Q68.44 131.91 67.64 132.14L68.01 130.08Q68.16 130.1 68.47 130.11Q68.77 130.12 69.14 130.13Q69.52 130.15 69.93 130.15Q70.34 130.16 70.71 130.17Q71.08 130.17 71.37 130.18Q71.65 130.18 71.78 130.18H79.03Q79.15 130.18 79.44 130.18Q79.73 130.17 80.09 130.17Q80.46 130.16 80.87 130.15Q81.29 130.15 81.66 130.13Q82.04 130.12 82.34 130.11Q82.65 130.1 82.8 130.08L83.17 132.14Q82.35 131.91 81.34 131.72Q80.46 131.57 79.26 131.44Q78.05 131.3 76.55 131.3V143.43Q76.55 144.51 76.58 145.31Q76.62 146.12 76.66 146.7Q76.7 147.29 76.77 147.68Q76.84 148.07 76.92 148.34V148.39H73.89V148.34Q73.96 148.07 74.03 147.68Q74.09 147.29 74.14 146.7Q74.19 146.12 74.22 145.31Q74.24 144.51 74.24 143.43ZM93.94 148.34Q94.01 148.07 94.08 147.68Q94.14 147.29 94.19 146.7Q94.24 146.12 94.27 145.31Q94.29 144.51 94.29 143.43V135.16Q94.29 134.08 94.27 133.28Q94.24 132.47 94.19 131.88Q94.14 131.29 94.08 130.9Q94.01 130.5 93.94 130.24V130.18H96.97V130.24Q96.89 130.5 96.82 130.9Q96.75 131.29 96.71 131.88Q96.67 132.47 96.63 133.28Q96.6 134.08 96.6 135.16V143.43Q96.6 144.51 96.63 145.31Q96.67 146.12 96.71 146.7Q96.75 147.29 96.82 147.68Q96.89 148.07 96.97 148.34V148.39H93.94ZM112.13 145.76Q112.13 147.48 111.78 148.73Q111.43 149.99 110.81 150.96Q110.18 151.93 109.32 152.69Q108.46 153.46 107.45 154.19L107.22 153.87Q108.1 153.07 108.61 152.21Q109.12 151.35 109.4 150.36Q109.67 149.38 109.75 148.24Q109.82 147.11 109.82 145.76V135.16Q109.82 134.08 109.8 133.28Q109.77 132.47 109.72 131.88Q109.67 131.29 109.6 130.9Q109.53 130.5 109.45 130.24V130.18H112.5V130.24Q112.42 130.5 112.35 130.9Q112.28 131.29 112.23 131.88Q112.18 132.47 112.16 133.28Q112.13 134.08 112.13 135.16ZM133.17 129.88Q135.29 129.88 137.09 130.57Q138.89 131.26 140.19 132.51Q141.5 133.77 142.24 135.52Q142.97 137.27 142.97 139.39Q142.97 140.6 142.69 141.76Q142.41 142.93 141.88 143.97Q141.34 145.01 140.55 145.9Q139.76 146.78 138.75 147.42Q137.74 148.06 136.52 148.42Q135.31 148.78 133.9 148.78Q131.78 148.78 129.98 148.1Q128.18 147.43 126.88 146.18Q125.57 144.94 124.83 143.19Q124.1 141.45 124.1 139.31Q124.1 138.11 124.37 136.94Q124.65 135.77 125.19 134.72Q125.73 133.66 126.51 132.78Q127.29 131.9 128.3 131.25Q129.31 130.6 130.54 130.24Q131.76 129.88 133.17 129.88ZM133.9 147.64Q135.31 147.64 136.47 147.13Q137.64 146.63 138.49 145.66Q139.33 144.7 139.8 143.31Q140.27 141.92 140.27 140.15Q140.27 138.2 139.82 136.53Q139.37 134.86 138.48 133.63Q137.59 132.41 136.26 131.71Q134.94 131.02 133.17 131.02Q131.76 131.02 130.6 131.52Q129.43 132.03 128.58 132.98Q127.74 133.93 127.27 135.31Q126.8 136.7 126.8 138.46Q126.8 140.4 127.24 142.09Q127.69 143.77 128.58 145Q129.47 146.23 130.8 146.94Q132.13 147.64 133.9 147.64ZM157.35 143.43Q157.35 144.51 157.38 145.31Q157.41 146.12 157.46 146.7Q157.5 147.29 157.57 147.68Q157.64 148.07 157.72 148.34V148.39H154.67V148.34Q154.75 148.07 154.82 147.68Q154.89 147.29 154.93 146.7Q154.97 146.12 155.01 145.32Q155.04 144.52 155.04 143.43V135.16Q155.04 134.08 155.01 133.28Q154.97 132.47 154.93 131.89Q154.89 131.3 154.82 130.9Q154.75 130.5 154.67 130.24V130.18L155.2 130.24Q155.44 130.26 155.74 130.27Q156.04 130.27 156.36 130.27Q156.85 130.27 157.7 130.15Q158.54 130.03 159.85 130.03Q161.07 130.03 162.1 130.36Q163.14 130.69 163.9 131.33Q164.66 131.96 165.09 132.88Q165.51 133.8 165.51 134.97Q165.51 135.89 165.28 136.67Q165.04 137.45 164.62 138.08Q164.19 138.72 163.59 139.2Q163 139.69 162.26 140.02L166.72 146.28Q167.05 146.75 167.33 147.1Q167.62 147.44 167.88 147.69Q168.14 147.93 168.38 148.09Q168.62 148.25 168.88 148.34V148.39H165.21Q165.17 148.15 164.96 147.75Q164.75 147.35 164.47 146.96L159.98 140.62Q159.68 140.65 159.39 140.66Q159.1 140.68 158.8 140.68Q158.44 140.68 158.08 140.66Q157.72 140.63 157.35 140.57ZM157.35 139.58Q157.69 139.66 158.05 139.69Q158.4 139.72 158.73 139.72Q159.68 139.72 160.47 139.43Q161.26 139.15 161.81 138.56Q162.36 137.98 162.67 137.11Q162.97 136.24 162.97 135.07Q162.97 134.12 162.76 133.35Q162.54 132.57 162.12 132.03Q161.69 131.49 161.04 131.19Q160.4 130.9 159.53 130.9Q158.66 130.9 158.14 130.98Q157.62 131.07 157.35 131.18ZM178.99 148.34Q179.06 148.07 179.13 147.68Q179.19 147.29 179.24 146.7Q179.29 146.12 179.32 145.31Q179.34 144.51 179.34 143.43V135.16Q179.34 134.08 179.32 133.28Q179.29 132.47 179.24 131.88Q179.19 131.29 179.13 130.9Q179.06 130.5 178.99 130.24V130.18H182.02V130.24Q181.94 130.5 181.87 130.9Q181.8 131.29 181.76 131.88Q181.71 132.47 181.68 133.28Q181.65 134.08 181.65 135.16V143.43Q181.65 144.51 181.68 145.31Q181.71 146.12 181.76 146.7Q181.8 147.29 181.87 147.68Q181.94 148.07 182.02 148.34V148.39H178.99Z"/></defs></svg>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="./" aria-label="Tijori home">
+      <img src="assets/brand/logo.svg" width="30" height="30" alt="">
+      <svg class="wm-latin" viewBox="66.64 128.88 116.38 26.31" aria-hidden="true"><use href="#wm-latin"/></svg>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="./#features">Features</a>
+      <a href="security.html">Security</a>
+      <a href="changelog.html" aria-current="page">Changelog</a>
+      <a href="help.html">Help</a>
+      <a href="app/">Phone app</a>
+    </nav>
+    <a class="btn btn--line btn--sm head-cta" href="download.html">Download</a>
+    <details class="menu">
+      <summary aria-label="Menu"><svg class="icon i-open" aria-hidden="true"><use href="assets/icons.svg#i-menu"/></svg><svg class="icon i-close" aria-hidden="true"><use href="assets/icons.svg#i-x"/></svg></summary>
+      <div class="menu-panel">
+        <ul>
+          <li><a href="./#features">Features</a></li>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="changelog.html" aria-current="page">Changelog</a></li>
+          <li><a href="help.html">Help</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+        <a class="btn btn--brass" href="app/">Open the phone app</a>
+        <p class="menu-note">Installs from your browser. No app store.</p>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Changelog</p>
+      <h1 class="d1">What changed, release by release.</h1>
+      <p class="lead">Every version of Tijori, newest first. Updates install themselves on Windows; the phone app picks up the newest version the next time it opens online.</p>
+      <p class="page-meta"><span>Latest <span data-v="version" data-pending="4.0.0">4.0.0</span></span><a class="link" href="https://github.com/angadseth/tijori/releases" data-href="notes">Releases on GitHub<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg></a></p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <!-- RULES §1.3: every 4.0.0 line was checked against app/src on 30 Oct 2026. Anything not in the build goes under "Later". -->
+    <section class="release" id="v4-0-0" aria-labelledby="v4-title">
+      <header class="release-head">
+        <h2 class="ver" id="v4-title">4.0</h2>
+        <span class="name">HEIRLOOM</span>
+        <time datetime="2026-10-29">29 Oct 2026</time>
+        <a class="link" href="download.html">Download<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg></a>
+      </header>
+      <div class="release-body">
+        <p>A new Tijori from the ground up: a calmer design you can make your own, Windows Hello, a vault health check, cards, an authenticator, document packs and PDF tools, a 30-day Trash, and a vault that opens unchanged from 3.2.</p>
+        <h3>Look and feel</h3>
+        <ul>
+          <li>A new design, with eight themes, eight accents, fonts with matching Hindi faces, text size, density, corners, motion and textures. Each device keeps its own look.</li>
+          <li>Menus, home, lock screen and settings in Hindi as well as English.</li>
+          <li>A home screen of widgets you can turn on, off and reorder.</li>
+          <li>A frameless window that opens in your theme's colour, with no white flash.</li>
+          <li>A command palette on <kbd>Ctrl</kbd> <kbd>K</kbd> that searches everything, including Hinglish words such as "aadhar" or "bijli bill".</li>
+        </ul>
+        <h3>Security</h3>
+        <ul>
+          <li>A new lock screen, and quick unlock with Windows Hello: PIN, face or fingerprint.</li>
+          <li>Setting up a vault now ends with a Recovery Kit PDF to print or keep on a pen drive.</li>
+          <li>Make a new recovery key any time from Settings, Security. It needs your master password, and the old key stops working.</li>
+          <li>Vault health: one score for weak, reused and old passwords, accounts without 2FA, expiring and unreviewed documents, backup age and the Recovery Kit.</li>
+          <li>An optional breach check, off until you turn it on. Only the first five characters of each password's hash leave the device (k-anonymity, Have I Been Pwned).</li>
+          <li>On Windows, the Google sign-in token for sync is now encrypted with Windows' own data protection, so a copied file is useless on another PC.</li>
+          <li>Tijori locks itself when Windows locks or goes to sleep.</li>
+          <li>An optional switch that keeps Tijori's window out of screenshots and screen recordings.</li>
+          <li>Signed automatic updates. The app checks each update's signature before installing it.</li>
+          <li>The full <a class="link" href="security.html">security design</a> is now published.</li>
+        </ul>
+        <h3>Everyday</h3>
+        <ul>
+          <li>A 30-day Trash for every kind of item, with restore and Empty trash.</li>
+          <li>Automatic encrypted backups to a folder you choose, and reminders for expiring papers and old backups (Windows).</li>
+          <li>Tijori can wait in the system tray when you close it, and start with Windows.</li>
+          <li>Opening or copying an item no longer counts as an edit, so it can't undo a newer change from another device.</li>
+        </ul>
+        <h3>Passwords, cards and codes</h3>
+        <ul>
+          <li>Password kinds for logins, bank accounts, Wi-Fi, API keys, licences, memberships and more, with a generator, history and 2FA codes.</li>
+          <li>Cards with finishes you choose. Showing a CVV or PIN asks for your master password again.</li>
+          <li>"My details": profiles with your name, address and ID numbers, filled from your documents and ready to copy.</li>
+          <li>An Authenticator page. Add an account from a QR code in an image or on the clipboard, or type its secret.</li>
+        </ul>
+        <h3>Documents and notes</h3>
+        <ul>
+          <li>A new library, viewer and editor for documents.</li>
+          <li>Masked Aadhaar copies with a watermark that says what the copy is for.</li>
+          <li>Locked PDFs, such as e-Aadhaar, open by themselves when Tijori can work out the password.</li>
+          <li>Document packs for KYC, passport, licence renewal and admission: what each needs, what is missing, and one PDF to send.</li>
+          <li>PDF tools: merge, split, reorder and rotate pages, photos to PDF, compress for government forms, and passport photos.</li>
+          <li>Notes with simple formatting, pins, tags and favourites.</li>
+        </ul>
+        <h3>Website</h3>
+        <ul>
+          <li>A new website with a download page that shows the version, size and SHA-256 of each file.</li>
+          <li>The phone app moved to <a class="link" href="app/">angadseth.github.io/tijori/app</a>. A phone that already has Tijori on its home screen is sent there by itself, and its vault stays.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="release release--small" id="v3-2-2" aria-labelledby="v322-title">
+      <header class="release-head">
+        <h2 class="ver" id="v322-title">3.2.2</h2>
+        <time datetime="2026-10-21">21 Oct 2026</time>
+      </header>
+      <div class="release-body">
+        <ul>
+          <li>Photos in an idea show large, and open full screen with arrows and swipe.</li>
+          <li>An opened idea reads like a page, with its photos, and a separate writer for new ideas.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="release release--small" id="v3-2-1" aria-labelledby="v321-title">
+      <header class="release-head">
+        <h2 class="ver" id="v321-title">3.2.1</h2>
+        <time datetime="2026-10-21">21 Oct 2026</time>
+      </header>
+      <div class="release-body">
+        <ul>
+          <li>Voice-to-text now works in the installed Windows app, not only in testing.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="release release--small" id="v3-2-0" aria-labelledby="v320-title">
+      <header class="release-head">
+        <h2 class="ver" id="v320-title">3.2</h2>
+        <time datetime="2026-10-21">21 Oct 2026</time>
+      </header>
+      <div class="release-body">
+        <ul>
+          <li>Share to WhatsApp through the Windows share sheet, so the real file is sent.</li>
+          <li>Store any kind of file, with previews for video, audio and Office files.</li>
+          <li>Crop and edit photos of documents. The original is always kept.</li>
+          <li>Folders inside folders, and a folder for each person in the family.</li>
+          <li>The back of an Aadhaar card is recognised and paired with its front.</li>
+          <li>An Ideas board for notes, photos, voice and video, with voice-to-text that runs offline.</li>
+          <li>Fixed: PDF previews that showed blank.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="release release--small" id="v3-1-0" aria-labelledby="v31-title">
+      <header class="release-head">
+        <h2 class="ver" id="v31-title">3.1</h2>
+        <time datetime="2026-10-19">19 Oct 2026</time>
+      </header>
+      <div class="release-body">
+        <ul>
+          <li>Sync sends your list of items first and documents after, so a new phone finds your vault at once.</li>
+          <li>Duplicate copies in Drive are merged and cleaned up.</li>
+          <li>On the phone, "Open my vault from Google" is the first choice.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="release release--small" id="v3-0-0" aria-labelledby="v30-title">
+      <header class="release-head">
+        <h2 class="ver" id="v30-title">3.0</h2>
+        <time datetime="2026-10-19">19 Oct 2026</time>
+      </header>
+      <div class="release-body">
+        <ul>
+          <li>The phone app: install it from the browser and open the same vault.</li>
+          <li>Sync through a hidden folder in your own Google Drive. Only sealed files leave your devices.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="release release--small" id="v2-0-0" aria-labelledby="v20-title">
+      <header class="release-head">
+        <h2 class="ver" id="v20-title">2.0</h2>
+        <time datetime="2026-10-19">19 Oct 2026</time>
+      </header>
+      <div class="release-body">
+        <ul>
+          <li>Files are kept exactly as you added them, byte for byte.</li>
+          <li>Better reading of photographed documents, and details such as dates, amounts and numbers picked out of every document.</li>
+          <li>Your own folders, with drag and drop.</li>
+          <li>Password kinds for bank accounts, cards and Wi-Fi, with the fields each one needs.</li>
+          <li>A new Tijori mark.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="release release--small" id="v1-1-0" aria-labelledby="v11-title">
+      <header class="release-head">
+        <h2 class="ver" id="v11-title">1.1</h2>
+        <time datetime="2026-10-18">18 Oct 2026</time>
+      </header>
+      <div class="release-body">
+        <ul>
+          <li>A warm cream design.</li>
+          <li>Documents are filed by what they say, and Tijori learns when you correct it.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="release release--small" id="v1-0-0" aria-labelledby="v10-title">
+      <header class="release-head">
+        <h2 class="ver" id="v10-title">1.0</h2>
+        <time datetime="2026-10-18">18 Oct 2026</time>
+      </header>
+      <div class="release-body">
+        <p>The first Tijori: an encrypted vault for documents and passwords on Windows, with offline reading of Indian documents and expiry tracking.</p>
+      </div>
+    </section>
+
+    <section class="release" id="later" aria-labelledby="later-title">
+      <header class="release-head">
+        <h2 class="ver" id="later-title">Later</h2>
+        <span class="name">NOT YET BUILT</span>
+      </header>
+      <div class="release-body">
+        <p>Planned for after 4.0. None of this is in the app today, and plans can change.</p>
+        <ul>
+          <li>Typing a password into another app for you (Auto-Type).</li>
+          <li>A browser extension.</li>
+          <li>Passkeys.</li>
+          <li>Scanning documents with the camera, with edge detection.</li>
+          <li>Checking the secure QR code on Aadhaar and other documents.</li>
+          <li>A kit that lets family members open the vault together if something happens to you.</li>
+          <li>Adding an authenticator account from a QR code on your screen.</li>
+          <li>Saving an unlocked copy of a locked PDF.</li>
+          <li>Renaming authenticator accounts that were added as codes only.</li>
+          <li>A full log of what Tijori sent over the network, beyond the switches in Settings, Privacy.</li>
+          <li>Sounds.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</main>
+
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <p class="lockup" role="img" aria-label="Tijori, तिजोरी">
+          <svg class="wm-deva" viewBox="1 1 247.67 91.38" aria-hidden="true"><use href="#wm-deva"/></svg>
+          <span class="rule"></span>
+          <svg class="wm-latin" viewBox="66.64 128.88 116.38 26.31" aria-hidden="true"><use href="#wm-latin"/></svg>
+        </p>
+        <p>Your documents and passwords, locked. A private vault for Windows and your phone.</p>
+      </div>
+      <nav class="foot-col" aria-label="Get Tijori">
+        <h2>Get Tijori</h2>
+        <ul>
+          <li><a href="download.html">Download for Windows</a></li>
+          <li><a href="app/">Phone app</a></li>
+          <li><a href="changelog.html">Release notes</a></li>
+          <li><a href="https://github.com/angadseth/tijori/releases">All releases</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Trust">
+        <h2>Trust</h2>
+        <ul>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="download.html#verify">Verify a download</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Help">
+        <h2>Help</h2>
+        <ul>
+          <li><a href="help.html">Help and guides</a></li>
+          <li><a href="help.html#smartscreen">The SmartScreen prompt</a></li>
+          <li><a href="help.html#forgot-password">Forgot your password</a></li>
+          <li><a href="https://github.com/angadseth/tijori/issues">Report a problem</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span class="maker">Made by Angad Jangir · IIT Madras</span>
+      <span>Version <span data-v="version" data-pending="4.0.0">4.0.0</span></span>
+      <span>No cookies, no analytics, no third-party requests.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

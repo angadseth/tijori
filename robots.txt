@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /tijori/
+Disallow: /tijori/app/
+
+Sitemap: https://angadseth.github.io/tijori/sitemap.xml

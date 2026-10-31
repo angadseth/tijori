@@ -1,0 +1,1 @@
+var e=(e,t)=>/wordprocessingml/.test(e)||t===`docx`?`docx`:/spreadsheetml/.test(e)||t===`xlsx`?`xlsx`:/presentationml/.test(e)||t===`pptx`?`pptx`:null;export{e as t};

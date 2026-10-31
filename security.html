@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-SU4i9lhRS+LGRF0fkjlFILuYqV82r9SUruCCo5QV2r8='; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<script>(function(d){var u=navigator.userAgent,p=(navigator.userAgentData&&navigator.userAgentData.platform)||navigator.platform||"";d.dataset.os=/android/i.test(u)?"android":/iphone|ipad|ipod/i.test(u)||(navigator.maxTouchPoints>1&&/mac/i.test(p))?"ios":/win/i.test(p)?"windows":/mac/i.test(p)?"mac":/linux|cros/i.test(p)?"linux":"other";d.classList.add("js")})(document.documentElement)</script>
+<title>Security: how Tijori protects your vault</title>
+<meta name="description" content="How Tijori encrypts your documents and passwords: Argon2id and XChaCha20-Poly1305, the vault file format, what Google can see when you sync, every network connection, and the limits.">
+<link rel="canonical" href="https://angadseth.github.io/tijori/security.html">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#0E0F11" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#F6F1E9" media="(prefers-color-scheme: light)">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/newsreader-display-latin-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/hanken-grotesk-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/site.css">
+<script src="assets/site.js" defer></script>
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Tijori">
+<meta property="og:locale" content="en_IN">
+<meta property="og:title" content="How Tijori keeps your vault private">
+<meta property="og:description" content="The cryptography, the files on your disk, what Google can see, every connection the app makes, and the limits.">
+<meta property="og:url" content="https://angadseth.github.io/tijori/security.html">
+<meta property="og:image" content="https://angadseth.github.io/tijori/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Tijori wordmark in Devanagari and Latin, with the line: your documents and passwords, locked.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="How Tijori keeps your vault private">
+<meta name="twitter:description" content="The cryptography, the files on your disk, what Google can see, every connection the app makes, and the limits.">
+<meta name="twitter:image" content="https://angadseth.github.io/tijori/og.png">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<svg class="sr-only" aria-hidden="true" focusable="false"><defs><path id="wm-deva" d="M21.97 90.9H21.01L13.33 85.91L13.71 37.14H5.27L2 30.9V29.94H14.19Q12.47 27.25 11.7 24.61Q10.93 21.97 10.93 19.48Q10.93 15.64 12.9 12.37Q14.87 9.11 18.99 7.04Q23.12 4.98 29.36 4.98Q35.03 4.98 40.88 6.95Q46.74 8.92 53.36 13.33Q59.99 17.75 67.76 24.95L65.17 27.92Q60.08 23.6 54.71 20.1Q49.33 16.6 43.71 14.48Q38.1 12.37 32.34 12.37Q27.25 12.37 24.03 14.05Q20.82 15.73 19.38 18.32Q17.94 20.92 17.94 23.89Q17.94 25.52 18.37 26.96Q18.8 28.4 19.57 29.94H29.75L33.01 36.18V37.14H21.78ZM51.73 90.42H50.77Q43.95 81.59 39.44 74.48Q34.93 67.38 34.93 61.24Q34.93 54.13 40.45 50.92Q45.97 47.7 55.09 47.7H68.63L68.72 37.14H30.9L27.63 30.9V29.94H84.75L88.02 36.18V37.14H76.79L76.98 90.42H76.02L68.34 85.43L68.53 54.9H56.15Q49.14 54.9 45.73 58.02Q42.32 61.14 42.32 65.65Q42.32 67.76 42.95 69.68Q43.57 71.6 45.06 73.91Q46.55 76.21 49.19 79.33Q51.83 82.45 55.86 87.06ZM116.53 81.3Q111.63 81.3 107.46 78.85Q103.28 76.4 99.73 72.23Q96.18 68.05 93.15 62.77Q90.13 57.49 87.44 51.73L91.38 50Q96.37 60.47 101.94 67Q107.51 73.52 113.94 73.52Q117.87 73.52 120.08 71.27Q122.29 69.01 122.29 65.84Q122.29 62.77 119.94 59.84Q117.59 56.92 112.88 54.8L110.29 49.24V48.18H139.19L139.28 37.14H85.91L82.64 30.9V29.94H155.31L158.58 36.18V37.14H147.35L147.54 90.42H146.58L138.9 85.43L139.09 55.38H122.1Q125.94 59.32 127.91 62.58Q129.87 65.84 129.87 69.49Q129.87 73.24 128 75.88Q126.13 78.52 123.11 79.91Q120.08 81.3 116.53 81.3ZM184.21 37.14H172.98L173.17 90.9H172.21L164.53 85.91L164.91 37.14H156.47L153.2 30.9V29.94H165.97Q161.84 22.84 158.96 18.71Q155.79 14.39 153.39 12.61Q150.99 10.84 148.31 10.84Q146.77 10.84 144.03 11.12Q141.3 11.41 139.09 11.89L134.67 3.73L134.77 3.06Q138.51 2.39 141.2 2.2Q143.89 2 144.75 2Q149.65 2 153.87 5.65Q158.1 9.3 162.42 15.83Q166.45 21.97 171.15 29.94H180.95L184.21 36.18ZM212.43 91.38H211.47L192.47 68.05Q188.91 63.73 187.43 61Q185.94 58.26 185.94 56.63Q185.94 53.56 190.83 53.56Q192.27 53.56 194.77 53.75Q197.27 53.94 198.99 54.13Q199.47 51.73 199.62 48.61Q199.76 45.49 199.76 43.19Q199.76 41.17 199.71 39.73Q199.67 38.29 199.57 37.14H182.1L178.83 30.9V29.94H218.77L222.03 36.18V37.14H207.54Q207.63 38.96 207.73 41.17Q207.83 43.38 207.83 44.24Q207.83 52.12 206.67 56.72Q205.52 61.33 203.17 63.64Q200.82 65.94 197.36 66.71L217.33 87.35ZM236.63 90.9H235.67L227.99 85.91L228.37 37.14H219.92L216.66 30.9V29.94H229.04Q228.37 23.51 226.16 19.67Q223.95 15.83 220.83 14.1Q217.71 12.37 214.35 12.37Q209.94 12.37 207.54 14.72Q205.14 17.08 205.14 20.72Q205.14 23.22 206.48 26.2L203.6 27.83Q201.2 25.33 200 22.5Q198.8 19.67 198.8 16.88Q198.8 12.08 202.16 8.53Q205.52 4.98 211.76 4.98Q217.23 4.98 221.99 8Q226.74 11.03 230.24 16.64Q233.75 22.26 235.38 29.94H244.4L247.67 36.18V37.14H236.43Z"/><path id="wm-latin" d="M74.24 131.3Q72.74 131.3 71.54 131.44Q70.33 131.57 69.46 131.72Q68.44 131.91 67.64 132.14L68.01 130.08Q68.16 130.1 68.47 130.11Q68.77 130.12 69.14 130.13Q69.52 130.15 69.93 130.15Q70.34 130.16 70.71 130.17Q71.08 130.17 71.37 130.18Q71.65 130.18 71.78 130.18H79.03Q79.15 130.18 79.44 130.18Q79.73 130.17 80.09 130.17Q80.46 130.16 80.87 130.15Q81.29 130.15 81.66 130.13Q82.04 130.12 82.34 130.11Q82.65 130.1 82.8 130.08L83.17 132.14Q82.35 131.91 81.34 131.72Q80.46 131.57 79.26 131.44Q78.05 131.3 76.55 131.3V143.43Q76.55 144.51 76.58 145.31Q76.62 146.12 76.66 146.7Q76.7 147.29 76.77 147.68Q76.84 148.07 76.92 148.34V148.39H73.89V148.34Q73.96 148.07 74.03 147.68Q74.09 147.29 74.14 146.7Q74.19 146.12 74.22 145.31Q74.24 144.51 74.24 143.43ZM93.94 148.34Q94.01 148.07 94.08 147.68Q94.14 147.29 94.19 146.7Q94.24 146.12 94.27 145.31Q94.29 144.51 94.29 143.43V135.16Q94.29 134.08 94.27 133.28Q94.24 132.47 94.19 131.88Q94.14 131.29 94.08 130.9Q94.01 130.5 93.94 130.24V130.18H96.97V130.24Q96.89 130.5 96.82 130.9Q96.75 131.29 96.71 131.88Q96.67 132.47 96.63 133.28Q96.6 134.08 96.6 135.16V143.43Q96.6 144.51 96.63 145.31Q96.67 146.12 96.71 146.7Q96.75 147.29 96.82 147.68Q96.89 148.07 96.97 148.34V148.39H93.94ZM112.13 145.76Q112.13 147.48 111.78 148.73Q111.43 149.99 110.81 150.96Q110.18 151.93 109.32 152.69Q108.46 153.46 107.45 154.19L107.22 153.87Q108.1 153.07 108.61 152.21Q109.12 151.35 109.4 150.36Q109.67 149.38 109.75 148.24Q109.82 147.11 109.82 145.76V135.16Q109.82 134.08 109.8 133.28Q109.77 132.47 109.72 131.88Q109.67 131.29 109.6 130.9Q109.53 130.5 109.45 130.24V130.18H112.5V130.24Q112.42 130.5 112.35 130.9Q112.28 131.29 112.23 131.88Q112.18 132.47 112.16 133.28Q112.13 134.08 112.13 135.16ZM133.17 129.88Q135.29 129.88 137.09 130.57Q138.89 131.26 140.19 132.51Q141.5 133.77 142.24 135.52Q142.97 137.27 142.97 139.39Q142.97 140.6 142.69 141.76Q142.41 142.93 141.88 143.97Q141.34 145.01 140.55 145.9Q139.76 146.78 138.75 147.42Q137.74 148.06 136.52 148.42Q135.31 148.78 133.9 148.78Q131.78 148.78 129.98 148.1Q128.18 147.43 126.88 146.18Q125.57 144.94 124.83 143.19Q124.1 141.45 124.1 139.31Q124.1 138.11 124.37 136.94Q124.65 135.77 125.19 134.72Q125.73 133.66 126.51 132.78Q127.29 131.9 128.3 131.25Q129.31 130.6 130.54 130.24Q131.76 129.88 133.17 129.88ZM133.9 147.64Q135.31 147.64 136.47 147.13Q137.64 146.63 138.49 145.66Q139.33 144.7 139.8 143.31Q140.27 141.92 140.27 140.15Q140.27 138.2 139.82 136.53Q139.37 134.86 138.48 133.63Q137.59 132.41 136.26 131.71Q134.94 131.02 133.17 131.02Q131.76 131.02 130.6 131.52Q129.43 132.03 128.58 132.98Q127.74 133.93 127.27 135.31Q126.8 136.7 126.8 138.46Q126.8 140.4 127.24 142.09Q127.69 143.77 128.58 145Q129.47 146.23 130.8 146.94Q132.13 147.64 133.9 147.64ZM157.35 143.43Q157.35 144.51 157.38 145.31Q157.41 146.12 157.46 146.7Q157.5 147.29 157.57 147.68Q157.64 148.07 157.72 148.34V148.39H154.67V148.34Q154.75 148.07 154.82 147.68Q154.89 147.29 154.93 146.7Q154.97 146.12 155.01 145.32Q155.04 144.52 155.04 143.43V135.16Q155.04 134.08 155.01 133.28Q154.97 132.47 154.93 131.89Q154.89 131.3 154.82 130.9Q154.75 130.5 154.67 130.24V130.18L155.2 130.24Q155.44 130.26 155.74 130.27Q156.04 130.27 156.36 130.27Q156.85 130.27 157.7 130.15Q158.54 130.03 159.85 130.03Q161.07 130.03 162.1 130.36Q163.14 130.69 163.9 131.33Q164.66 131.96 165.09 132.88Q165.51 133.8 165.51 134.97Q165.51 135.89 165.28 136.67Q165.04 137.45 164.62 138.08Q164.19 138.72 163.59 139.2Q163 139.69 162.26 140.02L166.72 146.28Q167.05 146.75 167.33 147.1Q167.62 147.44 167.88 147.69Q168.14 147.93 168.38 148.09Q168.62 148.25 168.88 148.34V148.39H165.21Q165.17 148.15 164.96 147.75Q164.75 147.35 164.47 146.96L159.98 140.62Q159.68 140.65 159.39 140.66Q159.1 140.68 158.8 140.68Q158.44 140.68 158.08 140.66Q157.72 140.63 157.35 140.57ZM157.35 139.58Q157.69 139.66 158.05 139.69Q158.4 139.72 158.73 139.72Q159.68 139.72 160.47 139.43Q161.26 139.15 161.81 138.56Q162.36 137.98 162.67 137.11Q162.97 136.24 162.97 135.07Q162.97 134.12 162.76 133.35Q162.54 132.57 162.12 132.03Q161.69 131.49 161.04 131.19Q160.4 130.9 159.53 130.9Q158.66 130.9 158.14 130.98Q157.62 131.07 157.35 131.18ZM178.99 148.34Q179.06 148.07 179.13 147.68Q179.19 147.29 179.24 146.7Q179.29 146.12 179.32 145.31Q179.34 144.51 179.34 143.43V135.16Q179.34 134.08 179.32 133.28Q179.29 132.47 179.24 131.88Q179.19 131.29 179.13 130.9Q179.06 130.5 178.99 130.24V130.18H182.02V130.24Q181.94 130.5 181.87 130.9Q181.8 131.29 181.76 131.88Q181.71 132.47 181.68 133.28Q181.65 134.08 181.65 135.16V143.43Q181.65 144.51 181.68 145.31Q181.71 146.12 181.76 146.7Q181.8 147.29 181.87 147.68Q181.94 148.07 182.02 148.34V148.39H178.99Z"/></defs></svg>
+
+<header class="site-head">
+  <div class="wrap head-in">
+    <a class="brand" href="./" aria-label="Tijori home">
+      <img src="assets/brand/logo.svg" width="30" height="30" alt="">
+      <svg class="wm-latin" viewBox="66.64 128.88 116.38 26.31" aria-hidden="true"><use href="#wm-latin"/></svg>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="./#features">Features</a>
+      <a href="security.html" aria-current="page">Security</a>
+      <a href="changelog.html">Changelog</a>
+      <a href="help.html">Help</a>
+      <a href="app/">Phone app</a>
+    </nav>
+    <a class="btn btn--line btn--sm head-cta" href="download.html">Download</a>
+    <details class="menu">
+      <summary aria-label="Menu"><svg class="icon i-open" aria-hidden="true"><use href="assets/icons.svg#i-menu"/></svg><svg class="icon i-close" aria-hidden="true"><use href="assets/icons.svg#i-x"/></svg></summary>
+      <div class="menu-panel">
+        <ul>
+          <li><a href="./#features">Features</a></li>
+          <li><a href="security.html" aria-current="page">Security</a></li>
+          <li><a href="changelog.html">Changelog</a></li>
+          <li><a href="help.html">Help</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+        </ul>
+        <a class="btn btn--brass" href="app/">Open the phone app</a>
+        <p class="menu-note">Installs from your browser. No app store.</p>
+      </div>
+    </details>
+  </div>
+</header>
+
+<main id="main">
+  <header class="page-head">
+    <div class="wrap">
+      <p class="eyebrow">Security</p>
+      <h1 class="d1">How Tijori keeps your vault private.</h1>
+      <p class="lead">The full design, in plain words: the cryptography, the files on your disk, what Google can see, every connection the app makes, and the places where Tijori cannot protect you.</p>
+      <p class="page-meta"><span>Revision 2</span><span>30 Oct 2026</span><span>Covers Tijori 4.0 for Windows and the phone app</span></p>
+    </div>
+  </header>
+
+  <div class="wrap doc">
+    <details class="toc" open>
+      <summary>On this page<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-chevron-down"/></svg></summary>
+      <p class="toc-title">On this page</p>
+      <ol>
+        <li><a href="#summary">In short</a></li>
+        <li><a href="#principles">Principles</a></li>
+        <li><a href="#threats">What it protects against</a></li>
+        <li><a href="#crypto">Cryptography</a></li>
+        <li><a href="#keys">Keys and files</a></li>
+        <li><a href="#unlock">Unlock and recovery</a></li>
+        <li><a href="#at-rest">On your devices</a></li>
+        <li><a href="#sync">Sync with Google Drive</a></li>
+        <li><a href="#runtime">While it is open</a></li>
+        <li><a href="#network">Network connections</a></li>
+        <li><a href="#updates">Downloads and updates</a></li>
+        <li><a href="#limits">Limits</a></li>
+        <li><a href="#report">Reporting a problem</a></li>
+        <li><a href="#revisions">Revisions</a></li>
+      </ol>
+    </details>
+
+    <article class="prose">
+      <h2 id="summary" data-toc><span class="n">01</span>In short</h2>
+      <ul>
+        <li><strong>There is no Tijori server and no Tijori account.</strong> Nothing you store passes through anything the maker runs.</li>
+        <li><strong>Everything is sealed on your device</strong> with XChaCha20-Poly1305, under a random 256-bit vault key. That key is locked by your master password through Argon2id, and separately by a recovery key you keep on paper.</li>
+        <li><strong>If you sync, Google holds sealed files only.</strong> It can see your email address and the number, sizes and times of the sealed files. It cannot read what is inside them.</li>
+        <li><strong>Forget both the master password and the recovery key, and the vault is gone.</strong> Nobody can open it for you, including the maker. That is the design, not a gap.</li>
+      </ul>
+
+      <h2 id="principles" data-toc><span class="n">02</span>Principles</h2>
+      <p><strong>Private by design.</strong> Your data is encrypted before it is stored or sent. A Google sign-in alone never opens the vault.</p>
+      <p><strong>Trust the math, not us.</strong> Tijori uses well-studied, widely reviewed algorithms and libraries. It has no custom cryptography.</p>
+      <p><strong>Say what it does.</strong> This page lists every network connection and every limit. If something here stops being true, the page changes with the release that changed it.</p>
+      <h3>What Tijori does not try to do</h3>
+      <ul>
+        <li>Protect a vault that is open on a device where malware is already running.</li>
+        <li>Hide that you use Tijori, or how much you store, from Google when you sync.</li>
+        <li>Share a vault between people with different passwords. One vault has one master password.</li>
+      </ul>
+
+      <h2 id="threats" data-toc><span class="n">03</span>What it protects against</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>If this happens</th><th>What it gets</th></tr></thead>
+          <tbody>
+            <tr><td>Your PC or phone is stolen while the vault is locked</td><td data-l="What it gets">Sealed files. Opening them needs your master password or recovery key.</td></tr>
+            <tr><td>Someone gets into your Google account</td><td data-l="What it gets">The sealed files in Tijori's hidden Drive folder. They can try to guess your master password offline, so a strong password matters (see <a href="#limits">Limits</a>).</td></tr>
+            <tr><td>Google is asked to hand over your data</td><td data-l="What it gets">The same sealed files, and your email address.</td></tr>
+            <tr><td>Someone watches your network</td><td data-l="What it gets">Encrypted HTTPS traffic to Google and GitHub. The files inside it are sealed as well.</td></tr>
+            <tr><td>Someone tampers with a sealed file</td><td data-l="What it gets">Nothing. Every file carries an authentication tag, so a changed byte makes it refuse to open.</td></tr>
+            <tr><td>Someone offers you a fake update</td><td data-l="What it gets">Nothing. The app installs only updates signed with Tijori's update key.</td></tr>
+            <tr><td>Malware runs on your PC while the vault is open</td><td data-l="What it gets"><strong>Out of scope.</strong> It can read the screen, the keyboard and the app's memory, as it can for any app.</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 id="crypto" data-toc><span class="n">04</span>Cryptography</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Job</th><th>Algorithm and settings</th></tr></thead>
+          <tbody>
+            <tr><td>Turning a password into a key</td><td data-l="Algorithm and settings">Argon2id, version 1.3: 64 MiB of memory, 3 passes, 1 lane, a fresh 16-byte random salt each time a key is wrapped, 32-byte output</td></tr>
+            <tr><td>Sealing data</td><td data-l="Algorithm and settings">XChaCha20-Poly1305: 256-bit key, a random 24-byte nonce for every file and every save, a 16-byte tag, and associated data that ties each file to its role</td></tr>
+            <tr><td>Random numbers</td><td data-l="Algorithm and settings">The operating system's generator (<code>OsRng</code> on Windows; libsodium's <code>randombytes</code> on the phone)</td></tr>
+            <tr><td>Libraries</td><td data-l="Algorithm and settings">Windows: RustCrypto <code>argon2</code> 0.5 and <code>chacha20poly1305</code> 0.10, with <code>zeroize</code>. Phone: <code>libsodium-wrappers-sumo</code> 0.8</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Argon2id is memory-hard: every guess at your password costs the same 64 MiB and three passes that unlocking costs you, which makes large-scale guessing slow and expensive. XChaCha20-Poly1305's long nonce makes random nonces safe for as many files as a vault will ever hold.</p>
+      <p>Both apps write the same format. A vault written by the Windows app is opened by the phone's code in Tijori's automated tests, so the two cannot drift apart unnoticed.</p>
+
+      <h2 id="keys" data-toc><span class="n">05</span>Keys and files</h2>
+      <p>When you make a vault, Tijori picks a random 32-byte <strong>vault key</strong>. Everything is sealed with it. The vault key itself is stored only in wrapped form:</p>
+      <ol>
+        <li>Your master password and a random salt go through Argon2id to make a key. That key seals the vault key, with associated data <code>pw</code>.</li>
+        <li>Your recovery key and its own random salt go through Argon2id the same way, and seal a second copy of the vault key, with associated data <code>rec</code>.</li>
+      </ol>
+      <p>A vault is three kinds of file:</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>File</th><th>Holds</th><th>Sealed with</th></tr></thead>
+          <tbody>
+            <tr><td><code>vault.json</code></td><td data-l="Holds">Format version, Argon2id settings, both salts, both wrapped copies of the vault key. Not secret: nothing in it opens the vault without your password or recovery key.</td><td data-l="Sealed with">Stored as plain JSON</td></tr>
+            <tr><td><code>index.tjr</code></td><td data-l="Holds">The list of your documents, passwords, notes, folders and settings, including the text read from your documents</td><td data-l="Sealed with">Vault key, associated data <code>index</code></td></tr>
+            <tr><td><code>blobs/&lt;id&gt;.tjr</code></td><td data-l="Holds">One document, photo or recording each. The id is 16 random bytes written as 32 hex characters.</td><td data-l="Sealed with">Vault key, associated data = the file's id</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Every sealed file has the same layout:</p>
+      <div class="code code--wrap"><code>"TJR1" (4 bytes) · nonce (24 bytes) · ciphertext · Poly1305 tag (16 bytes)</code></div>
+      <p>Because a file's id is part of its associated data, a sealed file cannot be swapped for another one or renamed without failing to open.</p>
+
+      <h2 id="unlock" data-toc><span class="n">06</span>Unlock and recovery</h2>
+      <p><strong>Unlocking.</strong> Tijori stores no password hash. It derives the key from what you type and tries to open the wrapped vault key; if the tag checks out, the password was right. Master passwords must be at least 8 characters, and longer is much better.</p>
+      <p><strong>Changing the password</strong> re-wraps the same vault key under the new password. Your files are not re-encrypted, and your recovery key keeps working.</p>
+      <p><strong>The recovery key</strong> is 20 random bytes (160 bits), shown once as 32 characters in eight groups of four, using Crockford's base32 so that <code>O</code> and <code>0</code>, or <code>I</code>, <code>L</code> and <code>1</code>, can't be confused. Using it lets you set a new master password, and Tijori then gives you a new recovery key; the old one stops working. Write it down or print the Recovery Kit PDF, and keep it away from the PC. While the vault is open you can also make a new recovery key from Settings, Security: it asks for your master password, wraps the vault key under a new recovery key and salt, and the old key stops working.</p>
+      <p><strong>Windows Hello.</strong> If you turn it on, Windows creates a key pair protected by Hello (kept in the TPM where the PC has one). It signs a fixed random challenge, and a SHA-256 of that signature wraps the vault key into <code>hello.bin</code>. That file never leaves the PC: sync and backups skip it. There is no weaker fallback: if Hello is unavailable, you type your password.</p>
+
+      <h2 id="at-rest" data-toc><span class="n">07</span>On your devices</h2>
+      <h3>Windows</h3>
+      <p>The vault lives in <code>%APPDATA%\com.angad.tijori\vault</code>. Alongside the sealed files, two small files are not encrypted:</p>
+      <ul>
+        <li><code>sync.json</code>: sync bookkeeping, your Google email address and Google's refresh token for Tijori's hidden folder. Since 4.0 this file is encrypted with Windows' data protection (DPAPI, current user), so a copy of it is useless on another PC or Windows account. A program already running as you on that PC could still ask Windows to open it and use the token to download your sealed files. It cannot open them.</li>
+        <li>Your appearance settings (theme, accent, text size), so the lock screen opens in your colours. They never contain names of documents, people or sites.</li>
+      </ul>
+      <p>When you open or share a document with another app, Tijori writes a decrypted copy to a private folder under <code>%TEMP%\Tijori-share</code>. After 10 minutes it overwrites those copies with zeros and deletes them. On SSDs overwriting cannot guarantee the old bytes are gone, and Windows may also write memory to the page file or hibernation file.</p>
+      <p>A password file you import from another manager (CSV) is plain text. Delete it once the import is done.</p>
+      <p><strong>Backups.</strong> A backup, made by hand or on a schedule, copies the sealed vault files into a dated <code>Tijori-backup-…</code> folder in a place you choose, such as a pen drive. Nothing is decrypted to make it, and it opens only with your master password or recovery key. Automatic backups keep the newest few and delete only older folders with that name.</p>
+      <h3>Phone</h3>
+      <p>The phone app keeps the same sealed files in the browser's storage for <code>angadseth.github.io</code>. Clearing the site's data in the browser removes them from the phone; your Drive copy stays.</p>
+
+      <h2 id="sync" data-toc><span class="n">08</span>Sync with Google Drive</h2>
+      <p>Sync is off until you sign in with Google. Tijori asks for three things only: your identity (<code>openid</code>), your email address, and <code>drive.appdata</code>, a hidden folder in your Drive that only Tijori can use. It cannot see or change any other file in your Drive.</p>
+      <p>It uploads <code>vault.json</code> first, then <code>index.tjr</code>, then the document files. Two devices merge item by item: the newer change wins, and a deletion beats any older edit.</p>
+      <p><strong>What Google can see:</strong> your email address, that the folder exists, and the number, sizes and change times of the sealed files. Not their contents or names.</p>
+      <p><strong>Tokens.</strong> On Windows, Tijori signs in with Google's desktop flow (PKCE on a local loopback address) and keeps the refresh token as described above. Google itself says a desktop app's client secret is not confidential, so security never depends on it. On the phone, Google gives a short-lived token that lasts about an hour and no refresh token, so you tap to sync again after that.</p>
+      <p><strong>Stopping and deleting.</strong> Sign out in Tijori to stop syncing. To delete the Drive copy, open Google Drive on the web, then <b>Settings</b>, <b>Manage apps</b>, Tijori, <b>Delete hidden app data</b>. To remove Tijori's access entirely, visit <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
+
+      <h2 id="runtime" data-toc><span class="n">09</span>While it is open</h2>
+      <ul>
+        <li><strong>Keys stay in Rust on Windows.</strong> The interface asks the Rust side to seal and open files; the vault key never enters the web view, and it is wiped from memory (<code>zeroize</code>) when the vault locks. The interface does hold your decrypted list of items while the vault is open, because it has to show them.</li>
+        <li><strong>Auto-lock</strong> after 5 minutes without use by default, and when Windows locks or goes to sleep.</li>
+        <li><strong>Clipboard.</strong> Passwords and other secrets are copied with a flag that keeps them out of Windows clipboard history (<kbd>Win</kbd> <kbd>V</kbd>) and cloud clipboard, and are cleared after 30 seconds by default.</li>
+        <li><strong>Screen capture.</strong> A switch in Settings stops screenshots and screen recordings from capturing Tijori's window.</li>
+        <li><strong>A strict Content-Security-Policy</strong> in released builds, which names every outside host the app may reach (listed below).</li>
+        <li><strong>One copy at a time.</strong> A second launch focuses the running app instead of opening the vault twice.</li>
+      </ul>
+
+      <h2 id="network" data-toc><span class="n">10</span>Network connections</h2>
+      <p>This is every host the app contacts. There is no analytics, no crash reporting and no advertising, and this website loads nothing from anyone else.</p>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Host</th><th>When</th><th>What is sent</th></tr></thead>
+          <tbody>
+            <tr><td><code>accounts.google.com</code></td><td data-l="When">Only when you sign in for sync. On the phone, Google's sign-in script loads on the Sync page, on a new device opening its vault from Google, or once you have signed in; never for people who don't sync</td><td data-l="What is sent">Google's own sign-in page</td></tr>
+            <tr><td><code>oauth2.googleapis.com</code></td><td data-l="When">Sync</td><td data-l="What is sent">Sign-in codes and tokens</td></tr>
+            <tr><td><code>www.googleapis.com</code></td><td data-l="When">Sync</td><td data-l="What is sent">Sealed files to and from the hidden folder; a request for your email address</td></tr>
+            <tr><td><code>github.com</code></td><td data-l="When">Update checks (the installed Windows app; the portable app does not check)</td><td data-l="What is sent">A request for the latest release details; GitHub sees your IP address</td></tr>
+            <tr><td><code>api.pwnedpasswords.com</code></td><td data-l="When">Only if you turn on the breach check in Settings, Privacy (off by default)</td><td data-l="What is sent">The first 5 characters of each password's SHA-1 hash. The service answers with every hash that starts with them, and Tijori compares the rest on your device (k-anonymity), so your passwords and their full hashes never leave it</td></tr>
+            <tr><td><code>huggingface.co</code></td><td data-l="When">The first time you use voice-to-text</td><td data-l="What is sent">A one-time download of the speech model, which is large. After that, voice-to-text works offline.</td></tr>
+            <tr><td><code>cdn.jsdelivr.net</code></td><td data-l="When">The first time you use voice-to-text, or, on the phone, the first time a document is read</td><td data-l="What is sent">Downloads of the speech engine and, on the phone, the text-reading engine and its language data</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>None of these downloads send your documents anywhere. Text in your documents is read on the device: by Windows' built-in reader on a PC, and by an engine running in the browser on the phone.</p>
+
+      <h2 id="updates" data-toc><span class="n">11</span>Downloads and updates</h2>
+      <ul>
+        <li>The installer and portable app are published on <a href="https://github.com/angadseth/tijori/releases">GitHub Releases</a>, with a SHA-256 for each file on the <a href="download.html#verify">download page</a>.</li>
+        <li>They are <strong>not</strong> signed with a paid Windows code-signing certificate, which is why SmartScreen may warn the first time. Compare the SHA-256 before you run a file.</li>
+        <li>Updates are signed with Tijori's own minisign key, whose public half is built into the app. The app refuses any update that doesn't carry a valid signature.</li>
+        <li>The phone app is a website. Its integrity rests on GitHub Pages and HTTPS: if either were compromised, the phone app could be changed.</li>
+      </ul>
+
+      <h2 id="limits" data-toc><span class="n">12</span>Limits</h2>
+      <p>No app can promise perfect security, and Tijori doesn't. These are the ways it can fail you.</p>
+      <ul>
+        <li><strong>A weak master password.</strong> Anyone with your sealed files, for example through your Google account, can guess offline as long as they like. Argon2id makes each guess expensive, but it cannot save a short or common password. Use a long passphrase you use nowhere else.</li>
+        <li><strong>A device that is already compromised.</strong> A keylogger, screen recorder or other malware running while the vault is open can see what you see.</li>
+        <li><strong>The phone app runs in a browser.</strong> Its cryptography is libsodium compiled for the browser, and its keys live in the page's memory while the vault is open. JavaScript cannot reliably wipe memory.</li>
+        <li><strong>A shared web address.</strong> The phone app's storage belongs to <code>angadseth.github.io</code>, which other sites by the same maker also use. None of them load third-party scripts.</li>
+        <li><strong>Someone inside your Google account can lock you out.</strong> They still can't read anything, but they could replace the vault header in Tijori's Drive folder, and synced devices would copy it and stop opening with your password. Keep your Recovery Kit and a backup on another drive. A check against this is planned for 4.0.1.</li>
+        <li><strong>The phone app has no extra content policy.</strong> GitHub Pages can't send security headers, so the phone app relies on loading no third-party scripts. Stored web pages, SVG and XML files are downloaded, never opened inside Tijori.</li>
+        <li><strong>Size and timing.</strong> Encryption hides contents, not how many files you have, how large they are, or when they change.</li>
+        <li><strong>Other clipboard tools.</strong> Clipboard managers that ignore Windows' privacy flag may still keep what you copy.</li>
+        <li><strong>One maker, no audit.</strong> Tijori is built and maintained by one person. It has automated tests, including tests that the Windows and phone code read each other's files, but no independent security audit yet. Its source code is not public at the moment.</li>
+      </ul>
+
+      <h2 id="report" data-toc><span class="n">13</span>Reporting a problem</h2>
+      <p>If you find a security problem, please open an issue on <a href="https://github.com/angadseth/tijori/issues">github.com/angadseth/tijori/issues</a>. For anything that could put people's vaults at risk, keep the details out of the public issue: say that you have a security report and ask for a private way to send it. There is no bug bounty.</p>
+
+      <h2 id="revisions" data-toc><span class="n">14</span>Revisions</h2>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Revision</th><th>Date</th><th>Change</th></tr></thead>
+          <tbody>
+            <tr><td>3</td><td data-l="Date">31 Oct 2026</td><td data-l="Change">After a security review before release: Google's sign-in script loads on the phone only for sync; Limits adds the vault header risk and the phone app's missing content policy</td></tr>
+            <tr><td>2</td><td data-l="Date">30 Oct 2026</td><td data-l="Change">The sync token on Windows is DPAPI-encrypted; the optional breach check and making a new recovery key are described; update checks are for the installed app only</td></tr>
+            <tr><td>1</td><td data-l="Date">29 Oct 2026</td><td data-l="Change">First published, for Tijori 4.0</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </div>
+</main>
+
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <p class="lockup" role="img" aria-label="Tijori, तिजोरी">
+          <svg class="wm-deva" viewBox="1 1 247.67 91.38" aria-hidden="true"><use href="#wm-deva"/></svg>
+          <span class="rule"></span>
+          <svg class="wm-latin" viewBox="66.64 128.88 116.38 26.31" aria-hidden="true"><use href="#wm-latin"/></svg>
+        </p>
+        <p>Your documents and passwords, locked. A private vault for Windows and your phone.</p>
+      </div>
+      <nav class="foot-col" aria-label="Get Tijori">
+        <h2>Get Tijori</h2>
+        <ul>
+          <li><a href="download.html">Download for Windows</a></li>
+          <li><a href="app/">Phone app</a></li>
+          <li><a href="changelog.html">Release notes</a></li>
+          <li><a href="https://github.com/angadseth/tijori/releases">All releases</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Trust">
+        <h2>Trust</h2>
+        <ul>
+          <li><a href="security.html">Security</a></li>
+          <li><a href="privacy.html">Privacy policy</a></li>
+          <li><a href="download.html#verify">Verify a download</a></li>
+        </ul>
+      </nav>
+      <nav class="foot-col" aria-label="Help">
+        <h2>Help</h2>
+        <ul>
+          <li><a href="help.html">Help and guides</a></li>
+          <li><a href="help.html#smartscreen">The SmartScreen prompt</a></li>
+          <li><a href="help.html#forgot-password">Forgot your password</a></li>
+          <li><a href="https://github.com/angadseth/tijori/issues">Report a problem</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="foot-base">
+      <span class="maker">Made by Angad Jangir · IIT Madras</span>
+      <span>Version <span data-v="version" data-pending="4.0.0">4.0.0</span></span>
+      <span>No cookies, no analytics, no third-party requests.</span>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
