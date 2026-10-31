@@ -1,1 +1,0 @@
-import{et as e}from"./i18n-DITOenkr.js";var t={name:`cloud`,size:24,node:[[`path`,{d:`M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z`,key:`p7xjir`}]]};t.node;var n=e(t),r={name:`smartphone`,size:24,node:[[`rect`,{width:`14`,height:`20`,x:`5`,y:`2`,rx:`2`,ry:`2`,key:`1yt0o3`}],[`path`,{d:`M12 18h.01`,key:`mhygvu`}]]};r.node;var i=e(r);export{n,i as t};

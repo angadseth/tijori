@@ -74,12 +74,41 @@
       <p class="eyebrow">Changelog</p>
       <h1 class="d1">What changed, release by release.</h1>
       <p class="lead">Every version of Tijori, newest first. Updates install themselves on Windows; the phone app picks up the newest version the next time it opens online.</p>
-      <p class="page-meta"><span>Latest <span data-v="version" data-pending="4.0.0">4.0.0</span></span><a class="link" href="https://github.com/angadseth/tijori/releases" data-href="notes">Releases on GitHub<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg></a></p>
+      <p class="page-meta"><span>Latest <span data-v="version" data-pending="4.0.1">4.0.1</span></span><a class="link" href="https://github.com/angadseth/tijori/releases" data-href="notes">Releases on GitHub<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-up-right"/></svg></a></p>
     </div>
   </header>
 
   <div class="wrap">
     <!-- RULES §1.3: every 4.0.0 line was checked against app/src on 30 Oct 2026. Anything not in the build goes under "Later". -->
+    <section class="release" id="v4-0-1" aria-labelledby="v401-title">
+      <header class="release-head">
+        <h2 class="ver" id="v401-title">4.0.1</h2>
+        <span class="name">HEIRLOOM</span>
+        <time datetime="2026-10-31">31 Oct 2026</time>
+        <a class="link" href="download.html">Download<svg class="icon" aria-hidden="true"><use href="assets/icons.svg#i-arrow-right"/></svg></a>
+      </header>
+      <div class="release-body">
+        <p>Security hardening after the 4.0 review, the masked Aadhaar cover on the phone, and a lighter app.</p>
+        <h3>Security</h3>
+        <ul>
+          <li>The vault header now carries a seal made with your vault key. A synced device refuses a header from Google Drive that your vault didn't make, so someone in your Google account can't swap it to lock you out. 4.0 vaults get the seal on their next unlock.</li>
+          <li>The phone app carries a content security policy: no inline scripts, and outside code only from the exact pinned files it needs.</li>
+          <li>Word, Excel and PowerPoint files are unpacked with a size limit, so a booby-trapped file can't fill the memory.</li>
+          <li>Backup, restore, share and "show in folder" on Windows refuse odd or relative paths.</li>
+        </ul>
+        <h3>Phone</h3>
+        <ul>
+          <li>Masked Aadhaar places the cover over the first eight digits by itself, as on Windows.</li>
+          <li>The welcome and lock screens keep the jaali pattern away from the words.</li>
+        </ul>
+        <h3>Lighter</h3>
+        <ul>
+          <li>The Hindi text loads only when you pick Hindi.</li>
+          <li>The Windows app no longer carries the phone's crypto and text-reading libraries.</li>
+          <li>The import list no longer covers a dialog's buttons.</li>
+        </ul>
+      </div>
+    </section>
     <section class="release" id="v4-0-0" aria-labelledby="v4-title">
       <header class="release-head">
         <h2 class="ver" id="v4-title">4.0</h2>
@@ -316,7 +345,7 @@
     </div>
     <div class="foot-base">
       <span class="maker">Made by Angad Jangir · IIT Madras</span>
-      <span>Version <span data-v="version" data-pending="4.0.0">4.0.0</span></span>
+      <span>Version <span data-v="version" data-pending="4.0.1">4.0.1</span></span>
       <span>No cookies, no analytics, no third-party requests.</span>
     </div>
   </div>

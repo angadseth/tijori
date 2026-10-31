@@ -241,8 +241,8 @@
         <li><strong>A device that is already compromised.</strong> A keylogger, screen recorder or other malware running while the vault is open can see what you see.</li>
         <li><strong>The phone app runs in a browser.</strong> Its cryptography is libsodium compiled for the browser, and its keys live in the page's memory while the vault is open. JavaScript cannot reliably wipe memory.</li>
         <li><strong>A shared web address.</strong> The phone app's storage belongs to <code>angadseth.github.io</code>, which other sites by the same maker also use. None of them load third-party scripts.</li>
-        <li><strong>Someone inside your Google account can lock you out.</strong> They still can't read anything, but they could replace the vault header in Tijori's Drive folder, and synced devices would copy it and stop opening with your password. Keep your Recovery Kit and a backup on another drive. A check against this is planned for 4.0.1.</li>
-        <li><strong>The phone app has no extra content policy.</strong> GitHub Pages can't send security headers, so the phone app relies on loading no third-party scripts. Stored web pages, SVG and XML files are downloaded, never opened inside Tijori.</li>
+        <li><strong>Someone inside your Google account can delete your synced files.</strong> They still can't read anything. Since 4.0.1 the vault header carries a seal made with your vault key, and an unlocked device refuses a header from Drive that your vault didn't make, so it can't be swapped to lock you out. Deleting files in Drive is still possible, so keep your Recovery Kit and a backup on another drive.</li>
+        <li><strong>The phone app's content policy is a page tag.</strong> GitHub Pages can't send security headers, so since 4.0.1 the phone app carries its policy in the page itself: no inline scripts, and outside code only from the exact pinned text-reading, speech and Google sign-in files. Stored web pages, SVG and XML files are downloaded, never opened inside Tijori.</li>
         <li><strong>Size and timing.</strong> Encryption hides contents, not how many files you have, how large they are, or when they change.</li>
         <li><strong>Other clipboard tools.</strong> Clipboard managers that ignore Windows' privacy flag may still keep what you copy.</li>
         <li><strong>One maker, no audit.</strong> Tijori is built and maintained by one person. It has automated tests, including tests that the Windows and phone code read each other's files, but no independent security audit yet. Its source code is not public at the moment.</li>
@@ -256,6 +256,7 @@
         <table>
           <thead><tr><th>Revision</th><th>Date</th><th>Change</th></tr></thead>
           <tbody>
+            <tr><td>4</td><td data-l="Date">31 Oct 2026</td><td data-l="Change">Tijori 4.0.1: the vault header is sealed with the vault key so Drive can't swap it; the phone app carries a content policy; Limits updated</td></tr>
             <tr><td>3</td><td data-l="Date">31 Oct 2026</td><td data-l="Change">After a security review before release: Google's sign-in script loads on the phone only for sync; Limits adds the vault header risk and the phone app's missing content policy</td></tr>
             <tr><td>2</td><td data-l="Date">30 Oct 2026</td><td data-l="Change">The sync token on Windows is DPAPI-encrypted; the optional breach check and making a new recovery key are described; update checks are for the installed app only</td></tr>
             <tr><td>1</td><td data-l="Date">29 Oct 2026</td><td data-l="Change">First published, for Tijori 4.0</td></tr>
@@ -307,7 +308,7 @@
     </div>
     <div class="foot-base">
       <span class="maker">Made by Angad Jangir · IIT Madras</span>
-      <span>Version <span data-v="version" data-pending="4.0.0">4.0.0</span></span>
+      <span>Version <span data-v="version" data-pending="4.0.1">4.0.1</span></span>
       <span>No cookies, no analytics, no third-party requests.</span>
     </div>
   </div>

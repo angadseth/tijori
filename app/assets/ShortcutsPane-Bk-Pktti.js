@@ -1,1 +1,0 @@
-import{i as e,lt as t}from"./i18n-DITOenkr.js";import{ShortcutList as n}from"./ShortcutSheet-DJV7jTH3.js";import{t as r}from"./Row-HOjJpG0M.js";var i=t();function a(){let t=e();return(0,i.jsx)(r,{title:t(`shell.set.shortcuts`),children:(0,i.jsx)(n,{})})}export{a as default};
