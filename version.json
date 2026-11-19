@@ -1,19 +1,19 @@
 {
-  "version": "4.0.1",
-  "date": "2026-10-31T05:26:06Z",
-  "notesUrl": "https://github.com/angadseth/tijori/releases/tag/v4.0.1",
+  "version": "4.1.0",
+  "date": "2026-11-19T13:03:10Z",
+  "notesUrl": "https://github.com/angadseth/tijori/releases/tag/v4.1.0",
   "files": {
     "setup": {
-      "name": "Tijori_4.0.1_x64-setup.exe",
-      "size": 12729218,
-      "sha256": "950dfcb83beb7552afa5653d1aaa7bb82718b1b42492c7a70ab3808cb14f8e9b",
-      "url": "https://github.com/angadseth/tijori/releases/download/v4.0.1/Tijori_4.0.1_x64-setup.exe"
+      "name": "Tijori_4.1.0_x64-setup.exe",
+      "size": 12767370,
+      "sha256": "14d38fcbecc1e5662e22f0422589eaed11ac1b244b30797957fc4b50e9a7b801",
+      "url": "https://github.com/angadseth/tijori/releases/download/v4.1.0/Tijori_4.1.0_x64-setup.exe"
     },
     "portable": {
       "name": "Tijori.exe",
-      "size": 17966080,
-      "sha256": "9d146904018d26573b19526a7f39b36ad70c16bbba0766dd1fc7fb66c9f1c8f5",
-      "url": "https://github.com/angadseth/tijori/releases/download/v4.0.1/Tijori.exe"
+      "size": 18050560,
+      "sha256": "65843cb6dff8918aae805bbef423dd278efbb6ea378f560a6cbeef3521fdbf5e",
+      "url": "https://github.com/angadseth/tijori/releases/download/v4.1.0/Tijori.exe"
     }
   }
 }
